@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gran Quinta Metepec | Exclusividad en Metepec</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;600&display=swap');
+        
+        :root {
+            --gold: #C5A059;
+            --dark-blue: #0F172A;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+        }
+
+        .font-serif {
+            font-family: 'Playfair Display', serif;
+        }
+
+        .bg-gold { background-color: var(--gold); }
+        .text-gold { color: var(--gold); }
+        .bg-dark-blue { background-color: var(--dark-blue); }
+        
+        .hero-gradient {
+            background: linear-gradient(rgba(15, 23, 42, 0.8), rgba(15, 23, 42, 0.8)), url('https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .card-zoom:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Estilo para el botón de WhatsApp flotante */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #25d366;
+            color: white;
+            padding: 15px 25px;
+            border-radius: 50px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            font-weight: bold;
+            text-decoration: none;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: transform 0.3s;
+        }
+        .whatsapp-float:hover {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body class="text-slate-800">
+
+    <!-- Hero Section -->
+    <header class="hero-gradient h-[60vh] flex flex-col items-center justify-center text-center text-white px-6">
+        <span class="text-gold tracking-[0.3em] uppercase text-sm mb-4 font-semibold">Exclusividad en Metepec</span>
+        <h1 class="font-serif text-5xl md:text-7xl mb-6">Gran Quinta</h1>
+        <p class="text-xl max-w-2xl font-light leading-relaxed">
+            Tu futuro comienza en la Primera Sección. Seguridad, lujo y bienestar en 250 m².
+        </p>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-5xl mx-auto -mt-16 bg-white shadow-2xl rounded-xl overflow-hidden mb-20 relative z-10">
+        
+        <!-- Quick Info Bar -->
+        <div class="grid grid-cols-2 md:grid-cols-4 border-b border-slate-100 text-center">
+            <div class="p-6 border-r border-slate-100">
+                <p class="text-xs uppercase tracking-widest text-slate-400 mb-1">Superficie</p>
+                <p class="text-xl font-semibold">250 m²</p>
+            </div>
+            <div class="p-6 border-r border-slate-100">
+                <p class="text-xs uppercase tracking-widest text-slate-400 mb-1">Sección</p>
+                <p class="text-xl font-semibold">Primera</p>
+            </div>
+            <div class="p-6 border-r border-slate-100">
+                <p class="text-xs uppercase tracking-widest text-slate-400 mb-1">Precio m²</p>
+                <p class="text-xl font-semibold text-gold">$11,500</p>
+            </div>
+            <div class="p-6">
+                <p class="text-xs uppercase tracking-widest text-slate-400 mb-1">Inversión</p>
+                <p class="text-xl font-semibold text-slate-900">$2,875,000</p>
+            </div>
+        </div>
+
+        <div class="p-8 md:p-12">
+            <!-- Details Grid -->
+            <div class="grid md:grid-cols-2 gap-12 items-start">
+                
+                <!-- Amenities Section -->
+                <div>
+                    <h2 class="font-serif text-3xl mb-6 text-dark-blue">Estilo de Vida</h2>
+                    <ul class="space-y-4">
+                        <li class="flex items-center gap-4">
+                            <span class="w-8 h-8 rounded-full bg-gold/10 text-gold flex items-center justify-center font-bold">✓</span>
+                            <span><strong>Casa Club:</strong> Carril de nado y Gym equipado.</span>
+                        </li>
+                        <li class="flex items-center gap-4">
+                            <span class="w-8 h-8 rounded-full bg-gold/10 text-gold flex items-center justify-center font-bold">✓</span>
+                            <span><strong>Social:</strong> Cafetería, ludoteca y salón de eventos.</span>
+                        </li>
+                        <li class="flex items-center gap-4">
+                            <span class="w-8 h-8 rounded-full bg-gold/10 text-gold flex items-center justify-center font-bold">✓</span>
+                            <span><strong>Mascotas:</strong> Área exclusiva (Pet Friendly).</span>
+                        </li>
+                        <li class="flex items-center gap-4">
+                            <span class="w-8 h-8 rounded-full bg-gold/10 text-gold flex items-center justify-center font-bold">✓</span>
+                            <span><strong>Seguridad:</strong> Acceso controlado 24/7.</span>
+                        </li>
+                    </ul>
+
+                    <!-- Transparency Note -->
+                    <div class="mt-10 p-6 bg-slate-50 border-l-4 border-gold rounded-r-lg">
+                        <h4 class="font-bold text-dark-blue mb-2">Nota de Transparencia</h4>
+                        <p class="text-sm text-slate-600 leading-relaxed">
+                            Esta propiedad cuenta con un crédito bancario vigente. La operación de compra-venta incluye la liquidación simultánea ante notario, garantizando seguridad jurídica absoluta para el comprador.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Gallery Preview / Visuals -->
+                <div class="space-y-4">
+                    <div class="aspect-video bg-slate-100 rounded-lg overflow-hidden flex items-center justify-center border-2 border-dashed border-slate-300 relative group">
+                        <span class="text-slate-400 text-sm group-hover:hidden text-center p-4">Espacio para Imagen Principal<br><small>(Lote y Entorno)</small></span>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="aspect-square bg-slate-100 rounded-lg flex items-center justify-center border-2 border-dashed border-slate-300">
+                            <span class="text-slate-400 text-xs">Amenidades</span>
+                        </div>
+                        <div class="aspect-square bg-slate-100 rounded-lg flex items-center justify-center border-2 border-dashed border-slate-300">
+                            <span class="text-slate-400 text-xs">Ubicación</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer / Contact -->
+            <div class="mt-16 pt-8 border-t border-slate-100 flex flex-col md:flex-row items-center justify-between gap-6">
+                <div class="text-center md:text-left">
+                    <p class="font-serif text-2xl text-dark-blue">Aurelio Robles P.</p>
+                    <p class="text-slate-500">Consultor Inmobiliario | Especialista en Gestión</p>
+                </div>
+                <div class="flex gap-4">
+                    <a href="mailto:aurelio@robles.ws" class="bg-dark-blue text-white px-8 py-3 rounded-full font-semibold hover:bg-slate-800 transition-all shadow-lg text-center">
+                        Contactar
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Botón WhatsApp Flotante -->
+    <a href="https://wa.me/525546539933" target="_blank" class="whatsapp-float">
+        <span>Más Información</span>
+    </a>
+
+</body>
+</html>
