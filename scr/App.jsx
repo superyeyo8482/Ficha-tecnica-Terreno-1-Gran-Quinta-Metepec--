@@ -18,7 +18,7 @@ const App = () => {
     phone: "5546539933",
     countryCode: "52",
     get waLink() {
-      const msg = encodeURIComponent(`Hola Aurelio, vi tu web de Gran Quinta. Me interesa el Lote 1. ¿Podemos agendar visita para cerrar el trato?`);
+      const msg = encodeURIComponent(`Hola Aurelio, vi tu web de Gran Quinta. Me interesa el Lote 1. ¿Podemos agendar visita?`);
       return `https://wa.me/${this.countryCode}${this.phone}?text=${msg}`;
     }
   };
@@ -37,15 +37,14 @@ const App = () => {
     }
   };
 
-  // --- RUTAS CORREGIDAS SEGÚN TU CAPTURA DE PANTALLA ---
-  // Las imágenes están en la raíz, por eso la URL termina en /main/
-  const baseUrl = "https://raw.githubusercontent.com/superyeyo8482/Ficha-tecnica-Terreno-1-Gran-Quinta-Metepec--/main/";
+  // RUTA CORREGIDA: Apunta a la raíz del repositorio donde están las fotos
+  const baseUrl = "[https://raw.githubusercontent.com/superyeyo8482/Ficha-tecnica-Terreno-1-Gran-Quinta-Metepec--/main/](https://raw.githubusercontent.com/superyeyo8482/Ficha-tecnica-Terreno-1-Gran-Quinta-Metepec--/main/)";
   
   const assets = {
     hero: `${baseUrl}Entrada%20Principal.jpeg`,
     video: `${baseUrl}video%20del%20fraccionamiento%20y%20terreno.mp4`,
     gallery: [
-      { url: `${baseUrl}areas%20verdes.jpeg`, title: "Plusvalía y Naturaleza" },
+      { url: `${baseUrl}areas%20verdes.jpeg`, title: "Plusvalía Natural" },
       { url: `${baseUrl}area%20de%20usos%20multiples.jpeg`, title: "Club House" },
       { url: `${baseUrl}areas%20verdes%20(2).jpeg`, title: "Seguridad 24/7" }
     ]
@@ -54,37 +53,37 @@ const App = () => {
   return (
     <div className="min-h-screen bg-[#FDFDFD] font-sans text-slate-900 selection:bg-indigo-100 overflow-x-hidden">
       
-      {/* Lead Capture Modal */}
+      {/* Modal Lead Magnet */}
       {showModal && (
         <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-slate-900/80 backdrop-blur-md">
           <div className="bg-white w-full max-w-lg rounded-[3rem] overflow-hidden shadow-2xl relative animate-in zoom-in duration-300">
             <button onClick={() => { setShowModal(false); setFormStep('input'); }} className="absolute top-8 right-8 p-2 hover:bg-slate-100 rounded-full transition-colors"><X size={24} className="text-slate-400" /></button>
-            <div className="p-12 text-left text-left">
+            <div className="p-12 text-left">
               {formStep === 'input' && (
                 <>
                   <div className="w-16 h-16 bg-indigo-50 text-indigo-600 rounded-2xl flex items-center justify-center mb-8"><Download size={32} /></div>
                   <h3 className="text-3xl font-black mb-3 tracking-tight">Expediente Digital</h3>
-                  <p className="text-slate-500 mb-10 leading-relaxed font-light">Reciba planos y costos de escrituración del Lote 1 directamente en su correo.</p>
+                  <p className="text-slate-500 mb-10 leading-relaxed font-light">Reciba planos y costos del Lote 1 directamente.</p>
                   <form onSubmit={(e) => { e.preventDefault(); setFormStep('submitting'); setTimeout(() => setFormStep('success'), 2000); }} className="space-y-4">
-                    <div className="relative"><User className="absolute left-5 top-1/2 -translate-y-1/2 text-slate-300" size={20} /><input required type="text" placeholder="Nombre completo" className="w-full pl-14 pr-5 py-5 bg-slate-50 border border-slate-100 rounded-2xl focus:ring-2 focus:ring-indigo-500 outline-none transition-all font-medium" /></div>
-                    <div className="relative"><Mail className="absolute left-5 top-1/2 -translate-y-1/2 text-slate-300" size={20} /><input required type="email" placeholder="Correo electrónico" className="w-full pl-14 pr-5 py-5 bg-slate-50 border border-slate-100 rounded-2xl focus:ring-2 focus:ring-indigo-500 outline-none transition-all font-medium" /></div>
-                    <button className="w-full bg-indigo-600 text-white py-5 rounded-2xl font-black text-lg hover:bg-indigo-700 shadow-xl shadow-indigo-100 transition-all mt-6 flex items-center justify-center gap-2 italic uppercase">Enviar Información <ArrowRight size={20} /></button>
+                    <div className="relative"><User className="absolute left-5 top-1/2 -translate-y-1/2 text-slate-300" size={20} /><input required type="text" placeholder="Nombre" className="w-full pl-14 pr-5 py-5 bg-slate-50 border border-slate-100 rounded-2xl focus:ring-2 focus:ring-indigo-500 outline-none" /></div>
+                    <div className="relative"><Mail className="absolute left-5 top-1/2 -translate-y-1/2 text-slate-300" size={20} /><input required type="email" placeholder="Correo" className="w-full pl-14 pr-5 py-5 bg-slate-50 border border-slate-100 rounded-2xl focus:ring-2 focus:ring-indigo-500 outline-none" /></div>
+                    <button className="w-full bg-indigo-600 text-white py-5 rounded-2xl font-black text-lg hover:bg-indigo-700 shadow-xl mt-6 uppercase italic">Enviar <ArrowRight size={20} /></button>
                   </form>
                 </>
               )}
-              {formStep === 'submitting' && <div className="py-24 flex flex-col items-center text-center"><Loader2 className="w-16 h-16 text-indigo-600 animate-spin mb-6" /><p className="text-2xl font-black text-slate-800 italic">Procesando Datos...</p></div>}
-              {formStep === 'success' && <div className="py-10 text-center text-left"><div className="w-24 h-24 bg-green-50 text-green-500 rounded-full flex items-center justify-center mx-auto mb-8 animate-bounce"><CheckCircle2 size={48} /></div><h3 className="text-3xl font-black mb-4 italic uppercase">¡Solicitud Enviada!</h3><p className="text-slate-500 mb-10">La ficha técnica ha sido enviada. Aurelio se comunicará con usted en breve.</p><button onClick={() => setShowModal(false)} className="w-full bg-slate-900 text-white py-5 rounded-2xl font-bold italic uppercase tracking-widest">Cerrar</button></div>}
+              {formStep === 'submitting' && <div className="py-24 flex flex-col items-center text-center"><Loader2 className="w-16 h-16 text-indigo-600 animate-spin mb-6" /><p className="text-2xl font-black text-slate-800 italic">Procesando...</p></div>}
+              {formStep === 'success' && <div className="py-10 text-center"><div className="w-24 h-24 bg-green-50 text-green-500 rounded-full flex items-center justify-center mx-auto mb-8 animate-bounce"><CheckCircle2 size={48} /></div><h3 className="text-3xl font-black mb-4 italic uppercase">¡Enviado!</h3><p className="text-slate-500 mb-10">Aurelio te contactará pronto.</p><button onClick={() => setShowModal(false)} className="w-full bg-slate-900 text-white py-5 rounded-2xl font-bold uppercase italic tracking-widest">Cerrar</button></div>}
             </div>
           </div>
         </div>
       )}
 
       {/* Nav */}
-      <nav className={`fixed top-0 w-full z-50 transition-all duration-700 ${scrolled ? 'bg-white/95 backdrop-blur-xl shadow-sm py-4 border-b border-slate-100' : 'bg-transparent py-8'}`}>
+      <nav className={`fixed top-0 w-full z-50 transition-all duration-700 ${scrolled ? 'bg-white/95 backdrop-blur-xl shadow-sm py-4' : 'bg-transparent py-8'}`}>
         <div className="container mx-auto px-8 flex justify-between items-center">
           <div className="flex items-center gap-4">
             <div className="w-12 h-12 bg-indigo-950 rounded-2xl flex items-center justify-center text-white font-black text-xl shadow-2xl italic">GQ</div>
-            <div className="hidden sm:flex flex-col text-left text-left">
+            <div className="hidden sm:flex flex-col text-left">
               <span className={`font-black text-xl tracking-tight leading-none ${scrolled ? 'text-slate-900' : 'text-white'}`}>Gran Quinta</span>
               <span className={`text-[10px] font-bold tracking-[0.3em] uppercase mt-1 ${scrolled ? 'text-indigo-600' : 'text-indigo-300'}`}>Metepec Luxury</span>
             </div>
@@ -98,16 +97,16 @@ const App = () => {
       {/* Hero */}
       <section className="relative h-[95vh] flex items-center justify-center overflow-hidden bg-slate-900">
         <div className="absolute inset-0 z-0">
-          <img src={assets.hero} alt="Entrada" className="w-full h-full object-cover opacity-80" onError={(e) => { e.target.src = "https://images.unsplash.com/photo-1500382017468-9049fee74a62?auto=format&fit=crop&w=1600&q=80" }} />
-          <div className="absolute inset-0 bg-gradient-to-b from-slate-950/70 via-slate-900/30 to-[#FDFDFD] z-10"></div>
+          <img src={assets.hero} alt="Hero" className="w-full h-full object-cover opacity-80" onError={(e) => { e.target.src = "[https://images.unsplash.com/photo-1500382017468-9049fee74a62?auto=format&fit=crop&w=1600&q=80](https://images.unsplash.com/photo-1500382017468-9049fee74a62?auto=format&fit=crop&w=1600&q=80)" }} />
+          <div className="absolute inset-0 bg-gradient-to-b from-slate-950/60 via-slate-900/20 to-[#FDFDFD] z-10"></div>
         </div>
         <div className="relative z-20 text-center text-white px-6 max-w-6xl">
           <div className="inline-flex items-center gap-2 px-5 py-2 bg-indigo-500/20 backdrop-blur-xl border border-indigo-400/30 rounded-full text-[10px] font-black tracking-[0.4em] uppercase mb-10 italic shadow-2xl">Lote 1: Disponibilidad Exclusiva</div>
           <h1 className="text-7xl md:text-[11rem] font-black mb-6 tracking-tighter leading-[0.8] drop-shadow-2xl italic uppercase">METEPEC</h1>
-          <p className="text-xl md:text-3xl font-light opacity-90 tracking-[0.25em] uppercase mb-16 italic font-bold">Gran Quinta Residencial Luxury</p>
+          <p className="text-xl md:text-3xl font-light opacity-90 tracking-[0.25em] uppercase mb-16 italic font-bold">Lote 1: Oportunidad Residencial</p>
           <div className="flex flex-col md:flex-row justify-center gap-6">
             <button onClick={() => setShowModal(true)} className="px-12 py-6 bg-white text-indigo-950 rounded-[2rem] font-black hover:bg-indigo-50 transition-all shadow-2xl flex items-center justify-center gap-3 text-lg italic underline decoration-indigo-200 decoration-2 underline-offset-8 uppercase">
-              <Download size={22} /> Ver Ficha PDF
+              <Download size={22} /> Ficha PDF
             </button>
             <a href="#video" className="px-12 py-6 bg-white/10 backdrop-blur-2xl border border-white/30 text-white rounded-[2rem] font-bold hover:bg-white/20 transition-all flex items-center justify-center gap-3 text-lg italic uppercase">
               Recorrido <Play size={22} fill="white" />
@@ -119,12 +118,12 @@ const App = () => {
       {/* Content */}
       <main className="container mx-auto px-8 py-32">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-24">
-          <div className="lg:col-span-8 text-left text-left">
+          <div className="lg:col-span-8 text-left">
             <h2 className="text-5xl font-black mb-12 flex items-center gap-6 text-slate-900 tracking-tighter italic uppercase">
               <span className="w-20 h-3 bg-indigo-600 rounded-full"></span> Lote 1 - Privada
             </h2>
             <p className="text-2xl text-slate-500 leading-relaxed text-justify font-light italic mb-20">
-              Ubicado en el polo de desarrollo más importante de Metepec, este lote ofrece la oportunidad de construir una residencia de lujo en un entorno de máxima seguridad y plusvalía. Gran Quinta destaca por su diseño Mexicano-Californiano único.
+              Ubicado en el polo de desarrollo más importante de Metepec, este lote ofrece la oportunidad de construir una residencia de lujo en un entorno de máxima seguridad y plusvalía.
             </p>
 
             {/* Video Player */}
@@ -132,108 +131,51 @@ const App = () => {
               <h3 className="text-3xl font-black mb-10 tracking-tight text-slate-800 italic uppercase underline decoration-indigo-500 underline-offset-8">Perspectiva del Fraccionamiento</h3>
               <div className="relative aspect-video rounded-[4rem] overflow-hidden bg-slate-900 group shadow-2xl border-[12px] border-white ring-1 ring-slate-100">
                 <video ref={videoRef} src={assets.video} className="w-full h-full object-cover" loop muted={isMuted} playsInline />
-                <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
                   <button onClick={togglePlay} className="p-10 bg-white/20 backdrop-blur-3xl rounded-full text-white border border-white/30 hover:scale-110 transition-transform shadow-2xl">
                     {isPlaying ? <Pause size={56} fill="white" /> : <Play size={56} fill="white" />}
                   </button>
                 </div>
-                <div className="absolute bottom-10 right-10 z-20"><button onClick={() => setIsMuted(!isMuted)} className="p-5 bg-black/40 backdrop-blur-2xl rounded-2xl text-white hover:bg-black/60 transition-all border border-white/10">{isMuted ? <VolumeX size={24} /> : <Volume2 size={24} />}</button></div>
+                <div className="absolute bottom-10 right-10 z-20"><button onClick={() => setIsMuted(!isMuted)} className="p-5 bg-black/40 backdrop-blur-2xl rounded-2xl text-white border border-white/10">{isMuted ? <VolumeX size={24} /> : <Volume2 size={24} />}</button></div>
               </div>
             </div>
 
             {/* Gallery */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-24 text-left">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-left">
               {assets.gallery.map((img, i) => (
-                <div key={i} className={`rounded-[3.5rem] overflow-hidden shadow-2xl h-[450px] group relative ${i === 0 ? 'md:col-span-2 h-[650px]' : ''}`}>
-                  <img src={img.url} alt={img.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-[2.5s]" onError={(e) => { e.target.src = "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1200&q=80" }} />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 to-transparent flex flex-col justify-end p-12 text-left">
-                    <p className="text-white font-black text-3xl mb-3 italic tracking-tight uppercase">{img.title}</p>
+                <div key={i} className={`rounded-[3.5rem] overflow-hidden shadow-2xl h-[450px] group relative ${i === 0 ? 'md:col-span-2' : ''}`}>
+                  <img src={img.url} alt={img.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[2.5s]" onError={(e) => { e.target.src = "[https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1200&q=80](https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1200&q=80)" }} />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 to-transparent flex flex-col justify-end p-10 text-left">
+                    <p className="text-white font-black text-2xl mb-2 italic uppercase tracking-tighter">{img.title}</p>
                     <p className="text-indigo-400 font-bold tracking-[0.3em] text-[10px] uppercase italic">Exclusividad Gran Quinta</p>
                   </div>
                 </div>
               ))}
             </div>
-
-            {/* Amenities Icons */}
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-8 text-left">
-              {[
-                { icon: <ShieldCheck />, name: "Seguridad 24/7" },
-                { icon: <Waves />, name: "Alberca" },
-                { icon: <Dumbbell />, name: "Gimnasio" },
-                { icon: <Trees />, name: "Áreas Verdes" },
-                { icon: <Building2 />, name: "Casa Club" },
-                { icon: <Wifi />, name: "Servicios" }
-              ].map((item, idx) => (
-                <div key={idx} className="p-10 bg-white rounded-[3rem] border border-slate-50 shadow-sm hover:shadow-2xl hover:border-indigo-100 transition-all text-center group">
-                  <div className="text-indigo-600 mb-6 flex justify-center group-hover:scale-110 transition-transform duration-500">{React.cloneElement(item.icon, { size: 40 })}</div>
-                  <span className="font-black text-slate-800 text-lg italic uppercase tracking-tighter leading-none">{item.name}</span>
-                </div>
-              ))}
-            </div>
           </div>
 
-          {/* Sidebar */}
           <div className="lg:col-span-4 text-left">
             <div className="sticky top-40 space-y-10 text-left">
-              <div className="bg-white p-12 rounded-[4rem] shadow-2xl border border-slate-100 relative overflow-hidden group text-left">
-                <div className="relative text-left">
-                  <h3 className="text-slate-400 text-[10px] font-black uppercase tracking-[0.3em] mb-3 text-left">Inversión Lote 1</h3>
-                  <p className="text-5xl font-black text-slate-900 tracking-tighter leading-none mb-12 text-left">$3.85M <span className="text-lg font-light text-slate-400">MXN</span></p>
-                  
-                  <div className="space-y-8 mb-16 text-left">
-                    {[
-                      { label: "Superficie", val: "377.71 m²", icon: <Maximize size={18} /> },
-                      { label: "Plusvalía", val: "Alta Proyección", icon: <TrendingUp size={18} /> },
-                      { label: "Ubicación", val: "Metepec Premium", icon: <MapPin size={18} /> }
-                    ].map((spec, i) => (
-                      <div key={i} className="flex justify-between items-center group/item cursor-default text-left">
-                        <span className="text-slate-400 font-bold text-[10px] uppercase tracking-widest flex items-center gap-2 group-hover/item:text-indigo-600 transition-colors italic">{spec.icon} {spec.label}</span>
-                        <span className="font-black text-slate-800 text-xl italic tracking-tighter">{spec.val}</span>
-                      </div>
-                    ))}
-                  </div>
-                  
-                  <div className="space-y-4 text-left">
-                    <a href={advisor.waLink} target="_blank" rel="noreferrer" className="w-full bg-emerald-600 text-white py-7 rounded-[2.5rem] font-black hover:bg-emerald-700 transition-all shadow-xl flex items-center justify-center gap-4 text-xl group tracking-tighter italic uppercase italic shadow-emerald-100">
-                      <MessageCircle size={24} fill="white" className="group-hover:rotate-12 transition-transform" /> Contactar Ahora
-                    </a>
-                    <button onClick={() => setShowModal(true)} className="w-full bg-indigo-50 text-indigo-600 py-7 rounded-[2.5rem] font-black hover:bg-indigo-100 transition-all flex items-center justify-center gap-4 text-lg italic uppercase tracking-tighter">
-                      <Download size={24} /> Descargar Brochure
-                    </button>
-                  </div>
-                  
-                  <div className="mt-12 pt-10 border-t border-slate-50 text-left">
-                    <div className="flex items-center gap-4 text-left">
-                      <div className="w-14 h-14 rounded-2xl bg-indigo-950 text-white flex items-center justify-center font-bold text-xl shadow-lg italic">AR</div>
-                      <div className="text-left">
-                        <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1 italic text-left">Asesor Residencial</p>
-                        <p className="text-xl font-black text-slate-800 leading-tight italic text-left">{advisor.name}</p>
-                      </div>
-                    </div>
-                  </div>
+              <div className="bg-white p-12 rounded-[4rem] shadow-2xl border border-slate-100 text-left">
+                <h3 className="text-slate-400 text-[10px] font-black uppercase tracking-[0.3em] mb-3 text-left">Inversión</h3>
+                <p className="text-5xl font-black text-slate-900 tracking-tighter leading-none mb-12 text-left">$3.85M <span className="text-lg font-light text-slate-400">MXN</span></p>
+                <div className="space-y-4">
+                  <a href={advisor.waLink} target="_blank" rel="noreferrer" className="w-full bg-emerald-600 text-white py-7 rounded-[2.5rem] font-black hover:bg-emerald-700 transition-all shadow-xl flex items-center justify-center gap-4 text-xl italic uppercase tracking-tighter shadow-emerald-200">
+                     Contactar Ahora
+                  </a>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </main>
-
-      {/* Footer */}
-      <footer className="bg-slate-950 text-white py-32 rounded-t-[6rem] text-center">
-        <div className="container mx-auto px-8">
-          <div className="w-24 h-24 bg-white/10 rounded-[2rem] mx-auto mb-12 flex items-center justify-center text-white font-black text-4xl italic shadow-2xl">GQ</div>
-          <h2 className="text-5xl font-black mb-10 tracking-tighter italic uppercase leading-none">Gran Quinta Luxury Estates</h2>
-          <div className="pt-20 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-8 opacity-60 text-left">
-            <div className="text-left w-full md:w-auto">
-              <p className="text-sm font-black text-white italic uppercase">{advisor.name}</p>
-              <p className="text-[10px] text-slate-500 uppercase tracking-widest mt-1 font-bold italic">Especialista Inmobiliario • Metepec</p>
-            </div>
-            <p className="text-[10px] text-slate-600 uppercase tracking-widest italic font-bold">© 2026 Robles Ecosystem. Powered by IA Architecture.</p>
-          </div>
-        </div>
+      
+      <footer className="bg-slate-950 text-white py-20 text-center rounded-t-[4rem]">
+        <p className="text-[10px] text-slate-600 uppercase tracking-widest italic font-bold">© 2026 Robles Ecosystem.</p>
       </footer>
     </div>
   );
 };
 
 export default App;
+
