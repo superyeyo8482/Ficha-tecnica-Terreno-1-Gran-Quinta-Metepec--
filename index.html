@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-    <title>Gran Quinta Lote 1 - Ficha Inmersiva</title>
+    <title>Gran Quinta Lote 1 - Inversión Segura</title>
     
     <!-- Librerías -->
     <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
@@ -20,6 +20,7 @@
         @media (min-width: 768px) { .chart-container { height: 320px; } }
         img { width: 100%; height: 100%; object-fit: cover; border-radius: inherit; }
         .video-container { position: relative; width: 100%; aspect-ratio: 16/9; background: #000; border-radius: 20px; overflow: hidden; }
+        .badge { background: #F59E0B; color: white; padding: 5px 15px; border-radius: 50px; font-size: 12px; font-weight: bold; display: inline-block; margin-bottom: 10px; }
     </style>
 </head>
 <body>
@@ -41,7 +42,7 @@
             const baseUrl = "https://raw.githubusercontent.com/superyeyo8482/Ficha-tecnica-Terreno-1-Gran-Quinta-Metepec--/main/";
 
             // ============================================
-            // NOMBRES DE ARCHIVO EXACTOS (corregidos)
+            // NOMBRES DE ARCHIVO EXACTOS
             // ============================================
             const images = {
                 hero: "imagen%206%20(entrada%20principal).jpg",
@@ -54,7 +55,7 @@
             };
 
             // ============================================
-            // DATOS DE FRACCIONAMIENTOS CON LINKS CORRECTOS
+            // DATOS DE FRACCIONAMIENTOS
             // ============================================
             const fraccionamientos = [
                 { nombre: "Gran Quinta (Lote 1)", precio: 11500, puntaje: 94, plusvalia: 14, color: "#F59E0B", link: "https://www.google.com/search?q=Gran+Quinta+Metepec" },
@@ -179,6 +180,20 @@
                         <p style={{ fontSize: '16px', opacity: 0.8 }}>$11,500/m²</p>
                     </div>
 
+                    {/* ===== NUEVA SECCIÓN: SUSTITUCIÓN DE DEUDOR ===== */}
+                    <div style={{ background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', padding: '20px', borderRadius: '20px', marginBottom: '20px', color: 'white' }}>
+                        <span className="badge">🔒 ESQUEMA SEGURO</span>
+                        <h3 style={{ fontSize: '20px', fontWeight: 'bold', marginBottom: '10px' }}>Adquisición mediante Sustitución de Deudor</h3>
+                        <p style={{ fontSize: '14px', lineHeight: '1.5', marginBottom: '10px' }}>
+                            Este método te permite <strong>adquirir el inmueble asumiendo el crédito hipotecario existente</strong> ante Notario Público, sin necesidad de contratar un nuevo financiamiento.
+                        </p>
+                        <p style={{ fontSize: '13px', opacity: 0.9 }}>
+                            ✅ Proceso rápido y transparente<br/>
+                            ✅ Escrituración inmediata<br/>
+                            ✅ Avalúo incluido
+                        </p>
+                    </div>
+
                     {/* ===== UBICACIÓN CON LINKS ===== */}
                     <div style={{ background: 'white', padding: '20px', borderRadius: '20px', boxShadow: '0 2px 8px rgba(0,0,0,0.1)', marginBottom: '20px' }}>
                         <h2 style={{ fontSize: '20px', fontWeight: 'bold', marginBottom: '15px' }}>📍 Ubicación Exacta</h2>
@@ -199,7 +214,7 @@
                         </div>
                     </div>
 
-                    {/* ===== GALERÍA DE IMÁGENES (CON LOS NOMBRES CORREGIDOS) ===== */}
+                    {/* ===== GALERÍA DE IMÁGENES ===== */}
                     <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px', marginBottom: '20px' }}>
                         <img src={`${baseUrl}${images.aerial}`} alt="Vista aérea" style={{ aspectRatio: '1/1', borderRadius: '15px' }} onError={(e) => e.target.style.display='none'} />
                         <img src={`${baseUrl}${images.clubHouse}`} alt="Casa Club" style={{ aspectRatio: '1/1', borderRadius: '15px' }} onError={(e) => e.target.style.display='none'} />
@@ -209,8 +224,21 @@
 
                     {/* ===== GRÁFICO DE TENDENCIA ===== */}
                     <div style={{ background: 'white', padding: '20px', borderRadius: '20px', marginBottom: '20px' }}>
-                        <h3 style={{ fontSize: '18px', fontWeight: 'bold', marginBottom: '10px' }}>📈 Tendencia de Precios</h3>
+                        <h3 style={{ fontSize: '18px', fontWeight: 'bold', marginBottom: '10px' }}>📈 Tendencia de Precios en Metepec</h3>
                         <div className="chart-container"><canvas id="chartTendencia"></canvas></div>
+                        <p style={{ fontSize: '11px', marginTop: '10px', color: '#666' }}>
+                            Fuente: Índice SHF de Precios de la Vivienda
+                        </p>
+                    </div>
+
+                    {/* ===== NUEVO: ENLACE A ARTÍCULO SOBRE PLUSVALÍA ===== */}
+                    <div style={{ background: '#F3F4F6', padding: '15px', borderRadius: '20px', marginBottom: '20px', textAlign: 'center' }}>
+                        <p style={{ fontSize: '14px', marginBottom: '10px' }}>
+                            📰 <strong>¿Por qué invertir en Metepec?</strong> Según El Financiero, Metepec es una de las zonas con mayor plusvalía del Estado de México.
+                        </p>
+                        <a href="https://www.elfinanciero.com.mx/tags/metepec/" target="_blank" style={{ display: 'inline-block', background: '#1E1B4B', color: 'white', padding: '10px 20px', borderRadius: '50px', textDecoration: 'none', fontSize: '14px', fontWeight: 'bold' }}>
+                            Leer artículo en El Financiero →
+                        </a>
                     </div>
 
                     {/* ===== GRÁFICO DE BURBUJAS ===== */}
@@ -234,12 +262,21 @@
                         <div className="chart-container"><canvas id="chartRadar"></canvas></div>
                     </div>
 
-                    {/* ===== CONTACTO CON MENSAJE DE WHATSAPP ===== */}
+                    {/* ===== CONTACTO ===== */}
                     <div style={{ background: '#F59E0B', padding: '20px', borderRadius: '20px', textAlign: 'center', marginBottom: '20px' }}>
                         <h3 style={{ fontSize: '20px', fontWeight: 'bold', color: 'white', marginBottom: '15px' }}>¿Listo para invertir?</h3>
-                        <a href="https://wa.me/5215546539933?text=Hola%20Aurelio,%20vi%20la%20ficha%20técnica%20del%20Lote%201%20en%20Gran%20Quinta%20y%20me%20encantó.%20¿Podemos%20agendar%20una%20visita?" target="_blank" style={{ display: 'inline-block', background: '#25D366', color: 'white', padding: '15px 30px', borderRadius: '50px', textDecoration: 'none', fontWeight: 'bold' }}>
+                        <a href="https://wa.me/5215546539933?text=Hola%20Aurelio,%20vi%20la%20ficha%20técnica%20del%20Lote%201%20en%20Gran%20Quinta%20y%20me%20interesa%20saber%20más%20sobre%20la%20sustitución%20de%20deudor.%20¿Podemos%20agendar%20una%20cita?" target="_blank" style={{ display: 'inline-block', background: '#25D366', color: 'white', padding: '15px 30px', borderRadius: '50px', textDecoration: 'none', fontWeight: 'bold' }}>
                             Contactar por WhatsApp
                         </a>
+                        <p style={{ fontSize: '14px', color: 'white', marginTop: '15px' }}>
+                            Aurelio Robles Pichardo - Asesor inmobiliario
+                        </p>
+                    </div>
+
+                    {/* ===== PIE DE PÁGINA ===== */}
+                    <div style={{ fontSize: '10px', color: '#999', textAlign: 'center', padding: '10px' }}>
+                        <p>Fuentes: Inmuebles24, Vivanuncios, Propiedades.com, SHF, El Financiero, Google Maps (2025).</p>
+                        <p>© 2026 Robles Ecosystem - Ficha técnica para inversionistas</p>
                     </div>
                 </div>
             );
