@@ -99,6 +99,68 @@
                 grid-template-columns: 1fr;
             }
         }
+
+        /* ===== PERSONAJE INVER-TITO ===== */
+        .inver-tito {
+            position: fixed;
+            bottom: 30px;
+            left: 20px;
+            z-index: 1000;
+            opacity: 0;
+            transform: translateX(-20px);
+            animation: aparecer 0.5s ease-out 3s forwards;
+            pointer-events: none; /* para que no interfiera con clics en botones */
+        }
+        @keyframes aparecer {
+            to { opacity: 1; transform: translateX(0); }
+        }
+        .inver-tito svg {
+            width: 120px;
+            height: 120px;
+            filter: drop-shadow(0 10px 15px rgba(0,0,0,0.2));
+        }
+        .burbuja {
+            position: absolute;
+            top: -60px;
+            left: 40px;
+            background: white;
+            padding: 10px 15px;
+            border-radius: 30px 30px 30px 5px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            font-size: 14px;
+            font-weight: bold;
+            color: #0F172A;
+            white-space: nowrap;
+            border: 2px solid #F59E0B;
+            animation: flotar-burbuja 3s ease-in-out infinite;
+        }
+        .burbuja::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 20px;
+            width: 0;
+            height: 0;
+            border-left: 12px solid transparent;
+            border-right: 12px solid transparent;
+            border-top: 12px solid #F59E0B;
+        }
+        @keyframes flotar-burbuja {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+        .brazo {
+            animation: senalar 2s ease-in-out infinite;
+            transform-origin: 60px 80px;
+        }
+        @keyframes senalar {
+            0%, 100% { transform: rotate(0deg); }
+            50% { transform: rotate(10deg); }
+        }
+        /* Ocultar personaje si el usuario ya hizo clic en WhatsApp (opcional con JS) */
+        .inver-tito.hide {
+            display: none;
+        }
     </style>
 </head>
 <body>
@@ -116,6 +178,8 @@
             const chartTendencia = useRef(null);
             const chartBurbujas = useRef(null);
             const chartRadar = useRef(null);
+            const [mensaje, setMensaje] = useState("¿Te ayudo a invertir?");
+            const [mostrarPersonaje, setMostrarPersonaje] = useState(true);
 
             const baseUrl = "https://raw.githubusercontent.com/superyeyo8482/Ficha-tecnica-Terreno-1-Gran-Quinta-Metepec--/main/";
 
@@ -210,6 +274,28 @@
                 };
             }, []);
 
+            // Cambiar mensaje cada 5 segundos
+            useEffect(() => {
+                const interval = setInterval(() => {
+                    setMensaje(prev => {
+                        const mensajes = [
+                            "¿Te ayudo a invertir?",
+                            "¡Este terreno es único!",
+                            "Consulta sin compromiso",
+                            "Brokers en línea 24/7"
+                        ];
+                        const currentIndex = mensajes.indexOf(prev);
+                        const nextIndex = (currentIndex + 1) % mensajes.length;
+                        return mensajes[nextIndex];
+                    });
+                }, 5000);
+                return () => clearInterval(interval);
+            }, []);
+
+            const ocultarPersonaje = () => {
+                setMostrarPersonaje(false);
+            };
+
             const togglePlay = () => {
                 if (videoRef.current) {
                     if (isPlaying) videoRef.current.pause();
@@ -300,17 +386,18 @@
                         <div className="chart-container"><canvas id="chartRadar"></canvas></div>
                     </div>
 
-                    {/* ===== SECCIÓN DE CONTACTOS CON NOMBRES COMPLETOS Y COLORES PERSONALIZADOS ===== */}
+                    {/* ===== SECCIÓN DE CONTACTOS CON NOMBRES COMPLETOS ===== */}
                     <div style={{ background: 'linear-gradient(145deg, #0B2A35 0%, #1A3F4A 100%)', padding: '25px', borderRadius: '30px', marginBottom: '20px', color: 'white', textAlign: 'center' }}>
                         <h3 style={{ fontSize: '24px', fontWeight: 'bold', marginBottom: '5px' }}>📞 ¡Contáctanos ya!</h3>
                         <p style={{ fontSize: '14px', marginBottom: '20px', opacity: 0.9 }}>Equipo de brokers especializados listos para ayudarte</p>
                         
                         <div className="contact-grid">
-                            {/* Contacto 1 - Aurelio Robles Pichardo (color turquesa) */}
+                            {/* Contacto 1 - Aurelio Robles Pichardo */}
                             <div>
                                 <a href="https://wa.me/5215546539933?text=Hola%20Aurelio,%20vi%20la%20ficha%20del%20Lote%201%20en%20Gran%20Quinta%20y%20quiero%20más%20información." 
                                    target="_blank" 
-                                   className="btn-whatsapp btn-whatsapp-1 pulse">
+                                   className="btn-whatsapp btn-whatsapp-1 pulse"
+                                   onClick={ocultarPersonaje}>
                                     <svg style={{ width: '28px', height: '28px' }} viewBox="0 0 24 24" fill="white">
                                         <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 21L6.3 19.66C7.75 20.45 9.38 20.87 11.04 20.87H11.04C16.5 20.87 20.95 16.42 20.95 10.96C20.95 5.5 16.5 2 12.04 2Z" />
                                     </svg>
@@ -319,11 +406,12 @@
                                 <p style={{ fontSize: '12px', marginTop: '5px' }}>Broker</p>
                             </div>
                             
-                            {/* Contacto 2 - Alejandro Lyman Chandler (color verde) */}
+                            {/* Contacto 2 - Alejandro Lyman Chandler */}
                             <div>
                                 <a href="https://wa.me/5215522535418?text=Hola%20Alejandro,%20vi%20la%20ficha%20del%20Lote%201%20en%20Gran%20Quinta%20y%20quisiera%20recibir%20asesoría." 
                                    target="_blank" 
-                                   className="btn-whatsapp btn-whatsapp-2 pulse-2">
+                                   className="btn-whatsapp btn-whatsapp-2 pulse-2"
+                                   onClick={ocultarPersonaje}>
                                     <svg style={{ width: '28px', height: '28px' }} viewBox="0 0 24 24" fill="white">
                                         <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 21L6.3 19.66C7.75 20.45 9.38 20.87 11.04 20.87H11.04C16.5 20.87 20.95 16.42 20.95 10.96C20.95 5.5 16.5 2 12.04 2Z" />
                                     </svg>
@@ -343,6 +431,30 @@
                         <p>Fuentes: SHF, INEGI, AMPI, Propiedades.com, El Sol de Toluca, Google Maps (2025).</p>
                         <p>© 2026 Robles Ecosystem - Ficha técnica para inversionistas</p>
                     </div>
+
+                    {/* ===== PERSONAJE INVER-TITO ===== */}
+                    {mostrarPersonaje && (
+                        <div className="inver-tito">
+                            <div className="burbuja">{mensaje}</div>
+                            <svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                {/* Cuerpo (forma de casita) */}
+                                <rect x="40" y="50" width="40" height="40" rx="8" fill="#F59E0B" />
+                                {/* Techo */}
+                                <polygon points="30,50 60,30 90,50" fill="#B45309" />
+                                {/* Ventana (ojo) */}
+                                <circle cx="60" cy="70" r="6" fill="white" />
+                                <circle cx="60" cy="70" r="3" fill="#0F172A" />
+                                {/* Brazo señalador */}
+                                <g className="brazo">
+                                    <rect x="75" y="65" width="25" height="6" rx="3" fill="#F59E0B" transform="rotate(15, 80, 70)" />
+                                    <circle cx="98" cy="60" r="5" fill="#F59E0B" />
+                                </g>
+                                {/* Base (rueditas) */}
+                                <circle cx="45" cy="92" r="5" fill="#4B5563" />
+                                <circle cx="75" cy="92" r="5" fill="#4B5563" />
+                            </svg>
+                        </div>
+                    )}
                 </div>
             );
         };
