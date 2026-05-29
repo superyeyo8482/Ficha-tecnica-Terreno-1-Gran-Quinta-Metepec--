@@ -15,7 +15,7 @@
     <meta property="og:description" content="Terreno Residencial de 250m² frente a Casa Club en Metepec. Precio total: $2,875,000 MXN ($11,500/m²). Esquema legal de Sustitución de Deudor ante Notario.">
     <meta property="og:image" content="https://raw.githubusercontent.com/superyeyo8482/Ficha-tecnica-Terreno-1-Gran-Quinta-Metepec--/main/imagen%206%20(entrada%20principal).jpg">
     
-    <!-- MOTORES: React, Babel, Tailwind CSS, Chart.js y Plugin Datalabels -->
+    <!-- LIBRERÍAS -->
     <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
     <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -39,22 +39,110 @@
         .animate-up { animation: fadeInUp 0.8s ease-out forwards; opacity: 0; transform: translateY(20px); }
         @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
         
-        .chart-container { position: relative; width: 100%; height: 320px; margin: 20px 0; }
-        .btn-touch { min-height: 48px; display: flex; align-items: center; justify-content: center; }
-        .hover-lift { transition: all 0.3s ease; }
-        .hover-lift:hover { transform: translateY(-4px); box-shadow: 0 20px 40px -10px rgba(0,0,0,0.2); }
+        .chart-container { position: relative; width: 100%; height: 280px; margin: 20px 0; }
+        @media (min-width: 768px) { .chart-container { height: 320px; } }
+        .video-container { position: relative; width: 100%; aspect-ratio: 16/9; background: #000; border-radius: 20px; overflow: hidden; margin-bottom: 20px; }
+        .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
+        .badge { background: #F59E0B; color: white; padding: 5px 15px; border-radius: 50px; font-size: 12px; font-weight: bold; display: inline-block; margin-bottom: 10px; }
         
-        .pdf-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; }
-        .card-pdf { background: white; padding: 1.5rem; border-radius: 1.5rem; box-shadow: 0 4px 12px rgba(0,0,0,0.05); border-left: 4px solid #F59E0B; transition: all 0.2s; }
-        .card-pdf:hover { transform: translateY(-4px); box-shadow: 0 12px 24px rgba(0,0,0,0.1); }
-        .btn-download { display: inline-flex; align-items: center; gap: 0.5rem; background: #F59E0B; color: #0F172A; padding: 0.5rem 1rem; border-radius: 40px; font-weight: bold; font-size: 0.8rem; text-decoration: none; margin-top: 1rem; transition: 0.2s; }
-        .btn-download:hover { background: #d97706; transform: scale(1.02); }
+        /* Botones de WhatsApp */
+        .btn-whatsapp {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 10px 16px;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 14px;
+            text-decoration: none;
+            color: white;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            width: 100%;
+            margin: 5px 0;
+        }
+        .btn-whatsapp-1 { background: linear-gradient(145deg, #00B5B5, #007777); }
+        .btn-whatsapp-2 { background: linear-gradient(145deg, #00C853, #009624); }
+        .btn-whatsapp svg { width: 20px; height: 20px; }
+        .btn-whatsapp:hover { transform: scale(1.02); filter: brightness(1.1); }
+        .contact-grid { display: flex; flex-direction: row; gap: 12px; justify-content: center; margin: 20px 0; }
+        .contact-grid > div { flex: 1; min-width: 0; }
+        @media (max-width: 640px) { .contact-grid { gap: 8px; } .btn-whatsapp { padding: 8px 12px; font-size: 12px; gap: 5px; } .btn-whatsapp svg { width: 16px; height: 16px; } }
+        
+        .image-gallery { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-bottom: 20px; }
+        .image-gallery img { width: 100%; aspect-ratio: 1/1; object-fit: cover; border-radius: 16px; background: #f0f0f0; }
+        
+        /* Personaje Inver-tito */
+        .inver-tito {
+            position: fixed;
+            bottom: 20px;
+            left: 15px;
+            z-index: 1000;
+            opacity: 0;
+            transform: translateX(-20px);
+            animation: aparecer 0.5s ease-out 3s forwards, pasear 25s ease-in-out infinite;
+            pointer-events: none;
+        }
+        @keyframes aparecer { to { opacity: 1; transform: translateX(0); } }
+        @keyframes pasear {
+            0% { left: 15px; }
+            25% { left: 30px; }
+            50% { left: calc(100% - 150px); }
+            75% { left: 30px; }
+            100% { left: 15px; }
+        }
+        .burbuja {
+            position: absolute;
+            top: -60px;
+            left: 40px;
+            background: white;
+            padding: 8px 12px;
+            border-radius: 25px 25px 25px 5px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            font-size: 12px;
+            font-weight: bold;
+            color: #0F172A;
+            white-space: nowrap;
+            border: 2px solid #F59E0B;
+            animation: flotar-burbuja 3s ease-in-out infinite;
+        }
+        @keyframes flotar-burbuja { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+        .brazo { animation: senalar 2s ease-in-out infinite; transform-origin: 60px 80px; }
+        @keyframes senalar { 0%,100% { transform: rotate(0deg); } 50% { transform: rotate(10deg); } }
+        @media (max-width: 480px) {
+            .inver-tito { transform: scale(0.8); bottom: 0px; left: 0px; }
+            .burbuja { font-size: 10px; white-space: normal; width: 110px; text-align: center; top: -70px; left: 15px; }
+        }
+        
+        /* Botones de descarga PDF */
+        .pdf-buttons { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin: 20px 0; }
+        .btn-pdf { background-color: #F59E0B; color: #0F172A; border: none; border-radius: 60px; padding: 10px 20px; font-weight: bold; font-size: 13px; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; transition: all 0.2s; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+        .btn-pdf:hover { transform: scale(1.02); background-color: #d97706; }
+        
+        .personal-badge { background-color: #1E3A8A; color: white; border-radius: 30px; padding: 4px 12px; font-size: 12px; font-weight: bold; display: inline-block; margin-bottom: 8px; }
+        
+        /* Tarjeta ICI */
+        .ici-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 2rem;
+            padding: 1.5rem;
+            color: white;
+            text-align: center;
+            box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1);
+        }
+        .ici-number {
+            font-size: 4rem;
+            font-weight: 900;
+            line-height: 1;
+            color: #F59E0B;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        .roi-badge { background: #10B981; padding: 0.25rem 1rem; border-radius: 999px; font-weight: bold; display: inline-block; }
     </style>
 </head>
 <body>
-    <div id="root">
-        <div style="display:flex; justify-content:center; align-items:center; height:100vh; font-family:serif; font-style:italic;">Cargando Ficha Técnica Ejecutiva...</div>
-    </div>
+    <div id="root"><div class="cargando">Cargando experiencia inmersiva...</div></div>
 
     <script type="text/babel">
         const { useState, useEffect, useRef } = React;
@@ -62,6 +150,8 @@
         const Icon = ({ name, className = "" }) => {
             const icons = {
                 map: (<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>),
+                play: (<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className={className}><polygon points="5 3 19 12 5 21 5 3"/></svg>),
+                pause: (<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className={className}><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>),
                 whatsapp: (<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>),
                 bank: (<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><rect width="20" height="12" x="2" y="6" rx="2"/><circle cx="12" cy="12" r="2"/><path d="M6 12h.01M18 12h.01"/></svg>),
                 shield: (<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>),
@@ -73,41 +163,132 @@
         };
 
         const App = () => {
-            const [scrolled, setScrolled] = useState(false);
-            const chartRef = useRef(null);
+            const [cargado, setCargado] = useState(false);
+            const [isPlaying, setIsPlaying] = useState(false);
+            const videoRef = useRef(null);
+            const chartRadar = useRef(null);
+            const chartBurbujas = useRef(null);
+            const chartTendencia = useRef(null);
+            const [mostrarPersonaje, setMostrarPersonaje] = useState(true);
+            const [mensaje, setMensaje] = useState("¿Te ayudo a invertir? 🤝");
 
-            // Datos de proyección de plusvalía (basada en la Proyección 2C)
-            const projectionData = {
-                labels: ['Año 0', 'Año 1', 'Año 2', 'Año 3', 'Año 4', 'Año 5'],
-                datasets: [{
-                    label: 'Valor de la Propiedad (Millones MXN)',
-                    data: [5.915, 6.39, 6.90, 7.45, 8.05, 8.69],
-                    borderColor: '#F59E0B',
-                    backgroundColor: 'rgba(245, 158, 11, 0.1)',
-                    fill: true,
-                    tension: 0.3
-                }]
-            };
+            const baseUrl = "https://raw.githubusercontent.com/superyeyo8482/Ficha-tecnica-Terreno-1-Gran-Quinta-Metepec--/main/";
+
+            // Imágenes de Gran Quinta (las que tienes en el repositorio)
+            const images = [
+                "imagen%206%20(entrada%20principal).jpg",
+                "imagen%207%20(casa%20club).jpg",
+                "imagen%205%20(areas%20verdes).webp",
+                "imagen%202%20(%20calle%20y%20casas).webp"
+            ];
+
+            // Datos de fraccionamientos para gráfica de burbujas (comparativa de precios por m²)
+            const fraccionamientos = [
+                { nombre: "Gran Quinta (Lote 1)", precio: 11500, puntaje: 94, plusvalia: 14, color: "#F59E0B", tamaño: 18 },
+                { nombre: "Condado del Valle", precio: 12400, puntaje: 88, plusvalia: 11, color: "#1E1B4B", tamaño: 15 },
+                { nombre: "Villas de San José", precio: 10800, puntaje: 75, plusvalia: 8, color: "#64748B", tamaño: 12 },
+                { nombre: "Los Pilares", precio: 11200, puntaje: 82, plusvalia: 10, color: "#64748B", tamaño: 13 },
+                { nombre: "Hípico Residencial", precio: 13500, puntaje: 90, plusvalia: 12, color: "#64748B", tamaño: 16 },
+                { nombre: "Paseos del Valle", precio: 9500, puntaje: 65, plusvalia: 5, color: "#64748B", tamaño: 10 }
+            ];
+
+            // Datos para gráfico de radar (factores clave de ubicación)
+            const factoresRadar = ['Las Torres', 'Tollocan', 'Comonfort', 'Tecnológico', 'C. Toluca', 'C. Metepec'];
+            const datosGranQuinta = [9, 10, 8, 8, 7, 9];
+            const datosOtros = [6, 5, 5, 4, 4, 6];
 
             useEffect(() => {
-                const handleScroll = () => setScrolled(window.scrollY > 50);
-                window.addEventListener('scroll', handleScroll);
-                
-                if (window.Chart && !chartRef.current && document.getElementById('projectionChart')) {
-                    const ctx = document.getElementById('projectionChart').getContext('2d');
-                    chartRef.current = new Chart(ctx, {
-                        type: 'line',
-                        data: projectionData,
-                        options: {
-                            responsive: true,
-                            maintainAspectRatio: false,
-                            plugins: { legend: { position: 'top' } }
-                        }
-                    });
-                }
+                setCargado(true);
+                if (window.Chart) window.Chart.register(ChartDataLabels);
 
-                return () => window.removeEventListener('scroll', handleScroll);
+                setTimeout(() => {
+                    // Gráfico de burbujas
+                    const bubbleCtx = document.getElementById('bubbleChart')?.getContext('2d');
+                    if (bubbleCtx && !chartBurbujas.current) {
+                        chartBurbujas.current = new Chart(bubbleCtx, {
+                            type: 'bubble',
+                            data: {
+                                datasets: [{
+                                    data: fraccionamientos.map(f => ({ x: f.precio, y: f.puntaje, r: f.tamaño })),
+                                    backgroundColor: fraccionamientos.map(f => f.color),
+                                    borderColor: 'white', borderWidth: 2
+                                }]
+                            },
+                            options: {
+                                responsive: true, maintainAspectRatio: false,
+                                plugins: {
+                                    legend: { display: false },
+                                    tooltip: { callbacks: { label: (ctx) => { const f = fraccionamientos[ctx.dataIndex]; return [`${f.nombre}`, `Precio: $${f.precio}/m²`, `Puntaje: ${f.puntaje}/100`, `Plusvalía: +${f.plusvalia}%`]; } } },
+                                    datalabels: {
+                                        display: true, align: 'top', offset: 10, color: '#0F172A', font: { weight: 'bold', size: 9 },
+                                        formatter: (value, ctx) => fraccionamientos[ctx.dataIndex].nombre.split(' ')[0]
+                                    }
+                                },
+                                scales: {
+                                    x: { title: { display: true, text: 'Precio por m² (MXN)' }, ticks: { callback: v => '$' + v/1000 + 'k' } },
+                                    y: { title: { display: true, text: 'Puntaje Ubicación' }, min: 0, max: 100 }
+                                }
+                            }
+                        });
+                    }
+
+                    // Gráfico de radar
+                    const radarCtx = document.getElementById('radarChart')?.getContext('2d');
+                    if (radarCtx && !chartRadar.current) {
+                        chartRadar.current = new Chart(radarCtx, {
+                            type: 'radar',
+                            data: {
+                                labels: factoresRadar,
+                                datasets: [
+                                    { label: 'Gran Quinta', data: datosGranQuinta, backgroundColor: 'rgba(245,158,11,0.2)', borderColor: '#F59E0B', pointBackgroundColor: '#F59E0B' },
+                                    { label: 'Promedio otros', data: datosOtros, backgroundColor: 'rgba(30,27,75,0.1)', borderColor: '#1E1B4B', pointBackgroundColor: '#1E1B4B' }
+                                ]
+                            },
+                            options: { responsive: true, maintainAspectRatio: false, scales: { r: { min: 0, max: 10, ticks: { stepSize: 2 } } } }
+                        });
+                    }
+
+                    // Gráfico de tendencia (plusvalía)
+                    const trendCtx = document.getElementById('priceChart')?.getContext('2d');
+                    if (trendCtx && !chartTendencia.current) {
+                        const gradient = trendCtx.createLinearGradient(0, 0, 0, 400);
+                        gradient.addColorStop(0, 'rgba(30, 27, 75, 0.5)');
+                        gradient.addColorStop(1, 'rgba(30, 27, 75, 0.0)');
+                        chartTendencia.current = new Chart(trendCtx, {
+                            type: 'line',
+                            data: {
+                                labels: ['2021', '2022', '2023', '2024', '2025', '2026'],
+                                datasets: [{
+                                    label: 'Promedio zona Metepec ($/m²)',
+                                    data: [8500, 9200, 10500, 11800, 12500, 13800],
+                                    borderColor: '#1E1B4B',
+                                    backgroundColor: gradient,
+                                    fill: true,
+                                    tension: 0.4
+                                }]
+                            },
+                            options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } } }
+                        });
+                    }
+                }, 500);
+
+                const interval = setInterval(() => {
+                    const msgs = ["Inversión inteligente 📈", "¡Este terreno es único! 🌟", "Consulta sin compromiso 💬", "Plusvalía garantizada 🏆"];
+                    setMensaje(prev => msgs[(msgs.indexOf(prev) + 1) % msgs.length]);
+                }, 5000);
+                return () => clearInterval(interval);
             }, []);
+
+            const togglePlay = () => {
+                if (videoRef.current) {
+                    if (isPlaying) videoRef.current.pause();
+                    else videoRef.current.play();
+                    setIsPlaying(!isPlaying);
+                }
+            };
+
+            const ocultarPersonaje = () => setMostrarPersonaje(false);
+            if (!cargado) return <div className="cargando">Preparando experiencia inmersiva...</div>;
 
             const advisor = {
                 name: "Aurelio Robles Pichardo",
@@ -119,200 +300,153 @@
             };
 
             return (
-                <div className="overflow-x-hidden text-left bg-[#FDFBF7]">
-                    {/* NAV */}
-                    <nav className={`fixed top-0 w-full z-50 transition-all duration-500 ${scrolled ? 'bg-white shadow-xl py-4 border-b border-orange-50' : 'bg-transparent py-8'}`}>
-                        <div className="container mx-auto px-6 flex justify-between items-center">
-                            <div className="flex items-center gap-3">
-                                <div className="w-10 h-10 bg-slate-900 text-white flex items-center justify-center font-black rounded-xl italic leading-none">GQ</div>
-                                <div className="hidden md:block leading-tight">
-                                    <p className={`font-bold font-serif uppercase tracking-tighter ${scrolled ? 'text-slate-900' : 'text-white'}`}>Gran Quinta</p>
-                                    <p className="text-[10px] font-bold text-amber-500 uppercase tracking-widest italic">Lote 1 Premium</p>
-                                </div>
-                            </div>
-                            <a href={advisor.waLink} target="_blank" className="bg-emerald-600 text-white px-6 py-3 rounded-full font-black text-xs uppercase tracking-widest shadow-xl flex items-center gap-2 hover:bg-emerald-700 transition-all active:scale-95 btn-touch hover-lift">
-                                <Icon name="whatsapp" className="w-4 h-4"/> Agendar Cierre
-                            </a>
-                        </div>
-                    </nav>
+                <div style={{ maxWidth: '500px', margin: '0 auto', padding: '15px' }}>
+                    {/* Badge personal (opcional) */}
+                    <div className="text-center mb-2">
+                        <span className="personal-badge">✨ Oportunidad exclusiva ✨</span>
+                    </div>
+                    <h1 className="text-4xl font-bold mb-1">Lote 1 Gran Quinta</h1>
+                    <p className="text-lg font-semibold text-amber-600 mb-1">250m² frente a Casa Club – Metepec</p>
+                    <p className="text-gray-600 mb-5">Estado de México, México</p>
 
-                    {/* HERO */}
-                    <header className="hero-bg min-h-screen flex items-center justify-center text-center px-4 pb-20 relative">
-                        <div className="max-w-4xl animate-up text-left mt-20 md:mt-0">
-                            <span className="inline-block px-4 py-1 bg-white/20 backdrop-blur-md border border-white/30 text-white rounded-full text-[10px] font-black uppercase tracking-[0.4em] mb-8 shadow-2xl italic">
-                                Inversión Inteligente • Metepec
-                            </span>
-                            <h1 className="text-6xl md:text-9xl font-black text-slate-900 tracking-tighter leading-[0.8] font-serif italic mb-8 uppercase">
-                                TERRENO <br/> EN VENTA
-                            </h1>
-                            <p className="text-xl md:text-2xl text-slate-700 max-w-2xl mx-auto font-light italic mb-12">
-                                <span className="font-bold text-indigo-900">250m² frente a Casa Club</span> - el lote mejor ubicado del fraccionamiento. Inversión mediante <span className="font-bold text-indigo-900 italic underline decoration-amber-500 decoration-4 underline-offset-4 uppercase">Sustitución de Deudor</span> ante Notario.
-                            </p>
-                            
-                            <div className="flex flex-col md:flex-row gap-4 justify-start mb-12">
-                                <a href="#analisis" className="bg-slate-900 text-white px-10 py-5 rounded-2xl font-black text-xs uppercase tracking-widest shadow-2xl hover:bg-slate-800 transition-all italic text-center btn-touch hover-lift">
-                                    Ver Análisis
-                                </a>
-                                <a href="#documentos" className="glass-panel text-slate-900 px-10 py-5 rounded-2xl font-black text-xs uppercase tracking-widest hover:bg-white transition-all italic text-center btn-touch hover-lift">
-                                    Documentos de Respaldo
-                                </a>
-                                <a href="#ubicacion" className="glass-panel text-slate-900 px-10 py-5 rounded-2xl font-black text-xs uppercase tracking-widest hover:bg-white transition-all italic text-center btn-touch hover-lift">
-                                    Ubicación
-                                </a>
-                            </div>
-                        </div>
-                    </header>
+                    {/* Video */}
+                    <div className="video-container">
+                        <video ref={videoRef} src={`${baseUrl}video%20del%20fraccionamiento%20y%20terreno.mp4`} style={{ width: '100%', height: '100%', objectFit: 'cover' }} loop muted playsInline />
+                        {!isPlaying && <button onClick={togglePlay} style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', background: 'rgba(0,0,0,0.6)', color: 'white', border: 'none', borderRadius: '50%', width: '60px', height: '60px', fontSize: '24px', cursor: 'pointer' }}>▶</button>}
+                    </div>
 
-                    {/* BARRA DE PRECIO */}
-                    <div className="container mx-auto px-4 -mt-24 relative z-20">
-                        <div className="bg-slate-900 rounded-[2.5rem] p-8 md:p-12 shadow-2xl flex flex-col md:flex-row items-center justify-between gap-8 border-4 border-white/10">
-                            <div className="text-center md:text-left flex-1 border-b md:border-b-0 md:border-r border-slate-700 pb-6 md:pb-0 md:pr-8">
-                                <p className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em] mb-2 italic">Valor Total de Inversión</p>
-                                <h2 className="text-4xl md:text-6xl font-black text-amber-400 font-serif italic tracking-tighter leading-none">$2,875,000<span className="text-lg md:text-2xl text-amber-600/80">.00</span></h2>
-                                <p className="text-[10px] font-bold text-slate-500 uppercase mt-2 tracking-widest">Pesos Mexicanos (MXN)</p>
-                            </div>
-                            <div className="text-center md:text-left flex-1 border-b md:border-b-0 md:border-r border-slate-700 pb-6 md:pb-0 md:px-8">
-                                <div className="flex flex-col items-center md:items-start">
-                                    <p className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em] mb-1 italic">Superficie Total</p>
-                                    <div className="flex items-baseline gap-2">
-                                        <h3 className="text-4xl md:text-5xl font-black text-white italic tracking-tighter">250.0</h3>
-                                        <span className="text-xl text-slate-500 font-black italic">m²</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="text-center md:text-right flex-1 md:pl-8">
-                                <p className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em] mb-1 italic">Precio por Metro</p>
-                                <h3 className="text-3xl md:text-4xl font-black text-white italic tracking-tighter">$11,500.00</h3>
-                                <p className="text-[10px] font-bold text-indigo-400 uppercase mt-2 tracking-widest">MXN / m²</p>
-                                <p className="text-[8px] text-slate-500 mt-1">Ahorras $350,000 vs. mercado</p>
-                            </div>
+                    {/* Tarjeta de precio */}
+                    <div className="bg-slate-900 text-white p-5 rounded-2xl mb-5">
+                        <p className="text-sm opacity-70">PRECIO TOTAL</p>
+                        <p className="text-5xl font-bold text-amber-400 my-1">$2,875,000</p>
+                        <p className="text-base">$11,500/m²</p>
+                        <div className="bg-white/10 p-3 rounded-xl mt-3">
+                            <p className="font-bold text-sm">💰 Ahorro inmediato:</p>
+                            <p className="text-sm">Ahorras $350,000 vs. precio de mercado promedio</p>
                         </div>
                     </div>
 
-                    <main className="container mx-auto px-6 py-20">
-                        {/* SECCIÓN ANÁLISIS Y PROYECCIONES */}
-                        <section id="analisis" className="mb-20 scroll-mt-20">
-                            <h2 className="text-4xl md:text-5xl font-black italic uppercase mb-8 text-slate-900 font-serif tracking-tighter">Análisis Financiero y Escenarios</h2>
-                            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-                                {/* Indicador ICI */}
-                                <div className="bg-gradient-to-br from-indigo-50 to-white p-8 rounded-3xl shadow-xl border border-indigo-100 text-center card-hover">
-                                    <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-indigo-100 text-indigo-800 mb-4">
-                                        <span className="text-3xl font-black">ICI</span>
-                                    </div>
-                                    <h3 className="text-2xl font-bold text-indigo-900 mb-2">Índice de Certeza de Inversión</h3>
-                                    <div className="text-6xl font-black text-amber-500 my-3">8.9<span className="text-2xl text-slate-500">/10</span></div>
-                                    <p className="text-slate-600 text-sm mb-4">Basado en plusvalía histórica, demanda, fuentes confiables y rentabilidad proyectada para el escenario de construcción y renta a 5 años.</p>
-                                    <a href="./Indice_de_Certeza_de_Invercion_ICI%20(1).pdf" download className="inline-flex items-center gap-2 text-indigo-600 font-bold text-sm hover:text-indigo-800">
-                                        📄 Descargar metodología del ICI
-                                    </a>
-                                </div>
-                                {/* Tabla de escenarios */}
-                                <div className="bg-white p-6 rounded-3xl shadow-xl border border-slate-100">
-                                    <h3 className="text-xl font-bold mb-4 text-center">Comparativa de Estrategias de Inversión</h3>
-                                    <div className="overflow-x-auto">
-                                        <table className="min-w-full text-sm">
-                                            <thead className="bg-slate-100">
-                                                <tr><th className="p-3 text-left">Escenario</th><th className="p-3 text-right">Inversión Inicial</th><th className="p-3 text-right">Utilidad Neta (5 años)</th><th className="p-3 text-right">ROI Anualizado</th></tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr className="border-b"><td className="p-3 font-medium">Venta Inmediata</td><td className="p-3 text-right">$0</td><td className="p-3 text-right text-red-600">-$431,000</td><td className="p-3 text-right">N/A</td></tr>
-                                                <tr className="border-b"><td className="p-3 font-medium">Esperar 3 años y vender</td><td className="p-3 text-right">$0</td><td className="p-3 text-right text-green-600">+$162,989</td><td className="p-3 text-right">~5%</td></tr>
-                                                <tr className="border-b"><td className="p-3 font-medium">Construir y Vender</td><td className="p-3 text-right">$3.3M</td><td className="p-3 text-right text-green-600">+$199,200</td><td className="p-3 text-right">~6%</td></tr>
-                                                <tr className="bg-amber-50"><td className="p-3 font-bold">Construir y Rentar</td><td className="p-3 text-right font-bold">$3.3M</td><td className="p-3 text-right font-bold text-green-600">+$3.16M</td><td className="p-3 text-right font-bold">14.6%</td></tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                    <p className="text-xs text-slate-400 mt-4 text-center">*Utilidades después de impuestos (ISR e ISAI). Los números son estimados. Consulta los documentos técnicos para detalles.</p>
-                                </div>
-                            </div>
-                        </section>
+                    {/* Sustitución de deudor */}
+                    <div className="bg-gradient-to-br from-indigo-600 to-purple-800 p-5 rounded-2xl text-white mb-5">
+                        <div className="badge mb-2">🔒 SUSTITUCIÓN DE DEUDOR</div>
+                        <p className="text-sm">Adquiere el inmueble asumiendo el crédito hipotecario existente ante Notario, sin contratar nuevo financiamiento. Mensualidad fija de $25,000 MXN.</p>
+                    </div>
 
-                        {/* PROYECCIÓN DE PLUSVALÍA */}
-                        <section className="mb-20">
-                            <div className="bg-white p-8 rounded-3xl shadow-xl border border-slate-100">
-                                <h3 className="text-2xl font-bold mb-6 text-center">📈 Proyección de Plusvalía a 5 Años</h3>
-                                <div className="h-64 md:h-80">
-                                    <canvas id="projectionChart"></canvas>
-                                </div>
-                                <div className="mt-6 grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
-                                    <div><p className="text-xs text-slate-500">Valor Inicial</p><p className="text-xl font-bold text-slate-800">$5.9M</p></div>
-                                    <div><p className="text-xs text-slate-500">Valor en 5 años</p><p className="text-xl font-bold text-amber-600">$8.7M</p></div>
-                                    <div><p className="text-xs text-slate-500">Ganancia Patrimonial</p><p className="text-xl font-bold text-green-600">+$2.8M</p></div>
-                                    <div><p className="text-xs text-slate-500">Crecimiento Anual</p><p className="text-xl font-bold text-indigo-700">8%</p></div>
-                                </div>
-                            </div>
-                        </section>
-
-                        {/* DOCUMENTOS DE RESPALDO */}
-                        <section id="documentos" className="mb-20 scroll-mt-20">
-                            <h2 className="text-4xl md:text-5xl font-black italic uppercase mb-8 text-slate-900 font-serif tracking-tighter">Documentos de Respaldo</h2>
-                            <div className="pdf-grid">
-                                <div className="card-pdf">
-                                    <h3 className="font-bold text-lg mb-1">Proyección 2A: Venta del Terreno</h3>
-                                    <p className="text-sm text-slate-600 mb-3">Análisis de punto de equilibrio, plusvalía e impuestos.</p>
-                                    <a href="./An%C3%A1lisis_Financiero_detallado_Gran_Quinta_Metepec__Estado_de_Mexico%20(2).pdf" download className="btn-download">📄 Descargar PDF</a>
-                                </div>
-                                <div className="card-pdf">
-                                    <h3 className="font-bold text-lg mb-1">Proyección 2B: Construcción y Venta</h3>
-                                    <p className="text-sm text-slate-600 mb-3">Costos de obra, punto de equilibrio y análisis de sensibilidad.</p>
-                                    <a href="./An%C3%A1lisis_Financiero_detallado_Construyendo_y_Vendiendo%20(1).pdf" download className="btn-download">📄 Descargar PDF</a>
-                                </div>
-                                <div className="card-pdf">
-                                    <h3 className="font-bold text-lg mb-1">Proyección 2C: Construcción y Renta</h3>
-                                    <p className="text-sm text-slate-600 mb-3">Flujo de efectivo proyectado y retorno por arrendamiento.</p>
-                                    <a href="./An%C3%A1lisis_Financiero_detallado_Construyendo_y_Rentando%20(1).pdf" download className="btn-download">📄 Descargar PDF</a>
-                                </div>
-                                <div className="card-pdf">
-                                    <h3 className="font-bold text-lg mb-1">Anexo Técnico de Construcción</h3>
-                                    <p className="text-sm text-slate-600 mb-3">Detalle de costos de materiales, mano de obra y flujo de inversión mensual.</p>
-                                    <a href="./Anexo_T%C3%A9cnico_Gran_Quinta_Metepec_Estado_de_MExico.pdf" download className="btn-download">📄 Descargar PDF</a>
-                                </div>
-                                <div className="card-pdf">
-                                    <h3 className="font-bold text-lg mb-1">Metodología ICI</h3>
-                                    <p className="text-sm text-slate-600 mb-3">Explicación del Índice de Certeza de Inversión y su aplicación.</p>
-                                    <a href="./Indice_de_Certeza_de_Invercion_ICI%20(1).pdf" download className="btn-download">📄 Descargar PDF</a>
-                                </div>
-                            </div>
-                        </section>
-
-                        {/* UBICACIÓN */}
-                        <section id="ubicacion" className="mb-20 scroll-mt-20">
-                            <h2 className="text-4xl md:text-5xl font-black italic uppercase mb-8 text-slate-900 font-serif tracking-tighter">Ubicación Estratégica</h2>
-                            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
-                                <div className="lg:col-span-6 space-y-6">
-                                    <p className="text-lg text-slate-600 leading-relaxed font-light">Gran Quinta se ubica en Metepec, Estado de México, en un corredor residencial consolidado cercano a desarrollos como Condado del Valle y zonas con lotes que se comercializan alrededor de $12,000–$12,700/m² en 2025.</p>
-                                    <div className="bg-amber-50 border-l-4 border-amber-500 p-6 rounded-2xl">
-                                        <h3 className="font-black italic uppercase mb-3 text-sm tracking-wider">Puntos de interés cercanos</h3>
-                                        <ul className="space-y-2 text-sm text-slate-700">
-                                            <li className="flex items-start gap-2"><Icon name="check" className="w-4 h-4 text-emerald-600 mt-0.5" /><span>Acceso a Periférico y Paseo Tollocan (5 min)</span></li>
-                                            <li className="flex items-start gap-2"><Icon name="check" className="w-4 h-4 text-emerald-600 mt-0.5" /><span>Centro Comercial Gran Patio Metepec (7 min)</span></li>
-                                            <li className="flex items-start gap-2"><Icon name="check" className="w-4 h-4 text-emerald-600 mt-0.5" /><span>Tecnológico de Monterrey Campus Toluca (10 min)</span></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div className="lg:col-span-6">
-                                    <div className="rounded-[3rem] overflow-hidden shadow-2xl border border-slate-200">
-                                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3767.4812!2d-99.5897!3d19.2299!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85cde2d5b1b1b1b1%3A0x123456789abcdef!2sMetepec%2C%20Estado%20de%20M%C3%A9xico!5e0!3m2!1ses!2smx!4v1234567890" className="w-full h-96" loading="lazy" style={{ border: 0 }} allowFullScreen></iframe>
-                                    </div>
-                                </div>
-                            </div>
-                        </section>
-
-                        {/* CONTACTO */}
-                        <div className="bg-teal-900 p-6 md:p-8 rounded-3xl text-white text-center">
-                            <h3 className="text-2xl font-bold mb-2">📞 ¿Listo para una asesoría personalizada?</h3>
-                            <p className="text-sm mb-4 opacity-90">Descarga los documentos y recibe análisis detallados de este proyecto.</p>
-                            <a href={advisor.waLink} target="_blank" className="inline-block bg-green-600 text-white px-8 py-4 rounded-full font-bold text-lg shadow-xl hover:bg-green-700 transition-all btn-touch">
-                                Contactar por WhatsApp
-                            </a>
-                            <p className="text-xs mt-4 opacity-80">Aurelio Robles Pichardo - Broker Inmobiliario</p>
+                    {/* Ubicación y distancias */}
+                    <div className="bg-white p-5 rounded-2xl shadow mb-5">
+                        <h2 className="text-xl font-bold mb-3">📍 Ubicación Exacta</h2>
+                        <p className="mb-3">Camino Real a Ocotitlán 601, Metepec</p>
+                        <div className="grid grid-cols-2 gap-3 text-sm">
+                            <div><span className="font-bold">Las Torres:</span> 5'</div>
+                            <div><span className="font-bold">Tollocan:</span> 4'</div>
+                            <div><span className="font-bold">Tecnológico:</span> 8'</div>
+                            <div><span className="font-bold">Centro Metepec:</span> 7'</div>
                         </div>
-                    </main>
+                        <a href="https://maps.google.com/?q=Camino+Real+a+Ocotitlán+601+Metepec" target="_blank" className="block bg-gray-100 text-center py-2 rounded-xl mt-4 text-gray-700">Ver en Google Maps →</a>
+                    </div>
 
-                    <footer className="bg-slate-950 text-white py-12 text-center rounded-t-3xl">
-                        <p className="text-[10px] font-black text-slate-700 uppercase tracking-widest">© 2026 Robles Ecosystem • Metepec</p>
-                        <p className="text-[8px] text-slate-800 uppercase">Consultoría Técnica en Activos Inmobiliarios</p>
-                    </footer>
+                    {/* Galería de imágenes */}
+                    <div className="grid grid-cols-2 gap-2.5 mb-5">
+                        {images.map((img, idx) => (
+                            <img key={idx} src={`${baseUrl}${img}`} className="aspect-square object-cover rounded-xl" alt="Vista de la propiedad" onError={(e) => e.target.style.display='none'} />
+                        ))}
+                    </div>
+
+                    {/* ICI y escenarios combinados */}
+                    <div className="ici-card mb-5">
+                        <h3 className="text-xl font-bold mb-2">Índice de Certeza de Inversión</h3>
+                        <div className="ici-number">8.9<span className="text-xl text-white">/10</span></div>
+                        <p className="text-sm mt-2">Basado en plusvalía histórica, demanda y rentabilidad proyectada</p>
+                        <div className="mt-4 bg-white/20 rounded-xl p-3">
+                            <p className="font-bold">🏆 Estrategia recomendada: <span className="text-amber-300">Construir y Rentar</span></p>
+                            <p className="text-sm mt-1">ROI anualizado: <span className="font-bold text-amber-300">14.6%</span> (incluye plusvalía)</p>
+                            <p className="text-sm">Utilidad neta a 5 años: <span className="font-bold">+$3.16M</span></p>
+                        </div>
+                    </div>
+
+                    {/* Tabla comparativa de escenarios */}
+                    <div className="bg-white p-5 rounded-2xl shadow mb-5">
+                        <h3 className="text-lg font-bold mb-3 text-center">Comparativa de Estrategias de Inversión</h3>
+                        <div className="overflow-x-auto">
+                            <table className="min-w-full text-sm">
+                                <thead className="bg-slate-100">
+                                    <tr><th className="p-2 text-left">Escenario</th><th className="p-2 text-right">Utilidad neta</th><th className="p-2 text-right">ROI anual</th></tr>
+                                </thead>
+                                <tbody>
+                                    <tr className="border-b"><td className="p-2">Vender hoy</td><td className="p-2 text-right text-red-600">-$431K</td><td className="p-2 text-right">N/A</td></tr>
+                                    <tr className="border-b"><td className="p-2">Esperar 3 años y vender</td><td className="p-2 text-right text-green-600">+$162,989</td><td className="p-2 text-right">~5%</td></tr>
+                                    <tr className="border-b"><td className="p-2">Construir y vender</td><td className="p-2 text-right text-green-600">+$199,200</td><td className="p-2 text-right">~6%</td></tr>
+                                    <tr className="bg-amber-50"><td className="p-2 font-bold">Construir y rentar</td><td className="p-2 text-right font-bold text-green-600">+$3.16M</td><td className="p-2 text-right font-bold">14.6%</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <p className="text-[10px] text-slate-400 mt-3">*Utilidades después de impuestos (ISR e ISAI).</p>
+                    </div>
+
+                    {/* Gráficos de comparación */}
+                    <div className="bg-white p-5 rounded-2xl mb-5">
+                        <h3 className="text-lg font-bold mb-2">📊 Comparativa de Fraccionamientos</h3>
+                        <div className="chart-container"><canvas id="bubbleChart"></canvas></div>
+                        <p className="text-xs text-gray-500 mt-2">Tamaño de burbuja = plusvalía proyectada. Gran Quinta (naranja) ofrece el mejor equilibrio precio/calidad.</p>
+                    </div>
+                    <div className="bg-white p-5 rounded-2xl mb-5">
+                        <h3 className="text-lg font-bold mb-2">🕸️ Ventaja por Ubicación</h3>
+                        <div className="chart-container"><canvas id="radarChart"></canvas></div>
+                        <p className="text-xs text-gray-500 mt-2">Gran Quinta supera al promedio de otros fraccionamientos en todos los factores clave.</p>
+                    </div>
+                    <div className="bg-white p-5 rounded-2xl mb-5">
+                        <h3 className="text-lg font-bold mb-2">📈 Tendencia de Precios en Metepec</h3>
+                        <div className="chart-container"><canvas id="priceChart"></canvas></div>
+                        <p className="text-xs text-gray-500 mt-2">Fuente: Índice SHF de Precios de la Vivienda.</p>
+                    </div>
+
+                    {/* Documentos de respaldo */}
+                    <div className="bg-gray-50 p-5 rounded-2xl mb-5 border border-gray-200">
+                        <h3 className="text-lg font-bold mb-3 text-center">📚 Documentos de Respaldo</h3>
+                        <div className="grid grid-cols-1 gap-3">
+                            <a href="./An%C3%A1lisis_Financiero_detallado_Gran_Quinta_Metepec__Estado_de_Mexico%20(2).pdf" download className="btn-pdf justify-center">📄 Proyección 2A – Venta del Terreno</a>
+                            <a href="./An%C3%A1lisis_Financiero_detallado_Construyendo_y_Vendiendo%20(1).pdf" download className="btn-pdf justify-center">📄 Proyección 2B – Construcción y Venta</a>
+                            <a href="./An%C3%A1lisis_Financiero_detallado_Construyendo_y_Rentando%20(1).pdf" download className="btn-pdf justify-center">📄 Proyección 2C – Construcción y Renta</a>
+                            <a href="./Anexo_T%C3%A9cnico_Gran_Quinta_Metepec_Estado_de_MExico.pdf" download className="btn-pdf justify-center">📄 Anexo Técnico de Construcción</a>
+                            <a href="./Indice_de_Certeza_de_Invercion_ICI%20(1).pdf" download className="btn-pdf justify-center">📄 Metodología del ICI</a>
+                        </div>
+                    </div>
+
+                    {/* Contactos */}
+                    <div className="bg-teal-900 p-6 rounded-3xl text-white text-center mb-5">
+                        <h3 className="text-2xl font-bold mb-2">📞 ¿Listo para invertir?</h3>
+                        <p className="text-sm mb-4 opacity-90">Asesoría personalizada sin costo</p>
+                        <div className="contact-grid">
+                            <div>
+                                <a href={advisor.waLink} target="_blank" className="btn-whatsapp btn-whatsapp-1" onClick={ocultarPersonaje}>
+                                    <svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 21L6.3 19.66C7.75 20.45 9.38 20.87 11.04 20.87H11.04C16.5 20.87 20.95 16.42 20.95 10.96C20.95 5.5 16.5 2 12.04 2Z"/></svg>
+                                    Aurelio Robles
+                                </a>
+                                <p className="text-[10px] mt-1 opacity-80">Broker & Advisor</p>
+                            </div>
+                        </div>
+                        <p className="text-xs mt-4 border-t border-white/20 pt-4">⚡ Respuesta rápida • Atención personalizada</p>
+                    </div>
+
+                    {/* Personaje Inver-tito */}
+                    {mostrarPersonaje && (
+                        <div className="inver-tito">
+                            <div className="burbuja">{mensaje}</div>
+                            <svg viewBox="0 0 120 120" fill="none" width="100" height="100">
+                                <rect x="40" y="50" width="40" height="40" rx="8" fill="#F59E0B" />
+                                <polygon points="30,50 60,30 90,50" fill="#B45309" />
+                                <circle cx="60" cy="70" r="6" fill="white" /><circle cx="60" cy="70" r="3" fill="#0F172A" />
+                                <g className="brazo"><rect x="75" y="65" width="25" height="6" rx="3" fill="#F59E0B" transform="rotate(15, 80, 70)" /><circle cx="98" cy="60" r="5" fill="#F59E0B" /></g>
+                                <circle cx="45" cy="92" r="5" fill="#4B5563" /><circle cx="75" cy="92" r="5" fill="#4B5563" />
+                            </svg>
+                        </div>
+                    )}
+
+                    {/* Footer */}
+                    <div className="text-center text-gray-400 text-[10px] py-2">
+                        <p>Fuentes: SHF, AMPI, Inmuebles24, Vivanuncios. Proyecciones basadas en datos de mercado 2026.</p>
+                        <p>© 2026 Robles Ecosystem – Premium real estate intelligence</p>
+                    </div>
                 </div>
             );
         };
