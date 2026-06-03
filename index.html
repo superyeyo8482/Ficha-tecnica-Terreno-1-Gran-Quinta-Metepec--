@@ -4,16 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
     
-    <!-- SEO & METADATA -->
-    <title>Inversión Lote 1 Gran Quinta | 250m² | Aurelio Robles</title>
-    <meta name="description" content="Oportunidad patrimonial en Metepec: Terreno residencial de 250m² frente a Casa Club. Precio total: $2,875,000 MXN ($11,500/m²). Adquisición segura mediante Sustitución de Deudor ante Notario.">
-    <meta name="author" content="Aurelio Robles Pichardo">
-    
-    <!-- OPEN GRAPH -->
+    <!-- Título y Open Graph para WhatsApp (miniatura: imagen 8 - vista aérea) -->
+    <title>Gran Quinta Lote 1 – Inversión Inteligente en Metepec</title>
+    <meta property="og:title" content="🏠 Gran Quinta Lote 1 – Inversión en Terreno frente a Casa Club">
+    <meta property="og:description" content="250m² en fraccionamiento cerrado. Precio $2,875,000 MXN ($11,500/m²). Sustitución de Deudor. Plusvalía 8% anual. Descarga el análisis completo.">
+    <meta property="og:image" content="https://raw.githubusercontent.com/superyeyo8482/Ficha-tecnica-Terreno-1-Gran-Quinta-Metepec--/main/imagen%208%20(gran%20quinta%20vista%20desde%20arriba).jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:url" content="https://ficha-tecnica-terreno-1-gran-quinta.vercel.app">
     <meta property="og:type" content="website">
-    <meta property="og:title" content="Inversión Lote 1 Gran Quinta | 250m² | Aurelio Robles">
-    <meta property="og:description" content="Terreno Residencial de 250m² frente a Casa Club en Metepec. Precio total: $2,875,000 MXN ($11,500/m²). Esquema legal de Sustitución de Deudor ante Notario.">
-    <meta property="og:image" content="https://raw.githubusercontent.com/superyeyo8482/Ficha-tecnica-Terreno-1-Gran-Quinta-Metepec--/main/imagen%206%20(entrada%20principal).jpg">
     
     <!-- LIBRERÍAS -->
     <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
@@ -63,7 +62,6 @@
             margin: 5px 0;
         }
         .btn-whatsapp-1 { background: linear-gradient(145deg, #00B5B5, #007777); }
-        .btn-whatsapp-2 { background: linear-gradient(145deg, #00C853, #009624); }
         .btn-whatsapp svg { width: 20px; height: 20px; }
         .btn-whatsapp:hover { transform: scale(1.02); filter: brightness(1.1); }
         .contact-grid { display: flex; flex-direction: row; gap: 12px; justify-content: center; margin: 20px 0; }
@@ -116,29 +114,13 @@
         }
         
         /* Botones de descarga PDF */
-        .pdf-buttons { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin: 20px 0; }
         .btn-pdf { background-color: #F59E0B; color: #0F172A; border: none; border-radius: 60px; padding: 10px 20px; font-weight: bold; font-size: 13px; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; transition: all 0.2s; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
         .btn-pdf:hover { transform: scale(1.02); background-color: #d97706; }
+        .pdf-grid { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin: 20px 0; }
         
         .personal-badge { background-color: #1E3A8A; color: white; border-radius: 30px; padding: 4px 12px; font-size: 12px; font-weight: bold; display: inline-block; margin-bottom: 8px; }
-        
-        /* Tarjeta ICI */
-        .ici-card {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border-radius: 2rem;
-            padding: 1.5rem;
-            color: white;
-            text-align: center;
-            box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1);
-        }
-        .ici-number {
-            font-size: 4rem;
-            font-weight: 900;
-            line-height: 1;
-            color: #F59E0B;
-            text-shadow: 0 2px 5px rgba(0,0,0,0.2);
-        }
-        .roi-badge { background: #10B981; padding: 0.25rem 1rem; border-radius: 999px; font-weight: bold; display: inline-block; }
+        .ici-card { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 2rem; padding: 1.5rem; color: white; text-align: center; box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1); }
+        .ici-number { font-size: 4rem; font-weight: 900; line-height: 1; color: #F59E0B; text-shadow: 0 2px 5px rgba(0,0,0,0.2); }
     </style>
 </head>
 <body>
@@ -174,7 +156,6 @@
 
             const baseUrl = "https://raw.githubusercontent.com/superyeyo8482/Ficha-tecnica-Terreno-1-Gran-Quinta-Metepec--/main/";
 
-            // Imágenes de Gran Quinta (las que tienes en el repositorio)
             const images = [
                 "imagen%206%20(entrada%20principal).jpg",
                 "imagen%207%20(casa%20club).jpg",
@@ -182,7 +163,6 @@
                 "imagen%202%20(%20calle%20y%20casas).webp"
             ];
 
-            // Datos de fraccionamientos para gráfica de burbujas (comparativa de precios por m²)
             const fraccionamientos = [
                 { nombre: "Gran Quinta (Lote 1)", precio: 11500, puntaje: 94, plusvalia: 14, color: "#F59E0B", tamaño: 18 },
                 { nombre: "Condado del Valle", precio: 12400, puntaje: 88, plusvalia: 11, color: "#1E1B4B", tamaño: 15 },
@@ -192,7 +172,6 @@
                 { nombre: "Paseos del Valle", precio: 9500, puntaje: 65, plusvalia: 5, color: "#64748B", tamaño: 10 }
             ];
 
-            // Datos para gráfico de radar (factores clave de ubicación)
             const factoresRadar = ['Las Torres', 'Tollocan', 'Comonfort', 'Tecnológico', 'C. Toluca', 'C. Metepec'];
             const datosGranQuinta = [9, 10, 8, 8, 7, 9];
             const datosOtros = [6, 5, 5, 4, 4, 6];
@@ -202,7 +181,6 @@
                 if (window.Chart) window.Chart.register(ChartDataLabels);
 
                 setTimeout(() => {
-                    // Gráfico de burbujas
                     const bubbleCtx = document.getElementById('bubbleChart')?.getContext('2d');
                     if (bubbleCtx && !chartBurbujas.current) {
                         chartBurbujas.current = new Chart(bubbleCtx, {
@@ -219,36 +197,25 @@
                                 plugins: {
                                     legend: { display: false },
                                     tooltip: { callbacks: { label: (ctx) => { const f = fraccionamientos[ctx.dataIndex]; return [`${f.nombre}`, `Precio: $${f.precio}/m²`, `Puntaje: ${f.puntaje}/100`, `Plusvalía: +${f.plusvalia}%`]; } } },
-                                    datalabels: {
-                                        display: true, align: 'top', offset: 10, color: '#0F172A', font: { weight: 'bold', size: 9 },
-                                        formatter: (value, ctx) => fraccionamientos[ctx.dataIndex].nombre.split(' ')[0]
-                                    }
+                                    datalabels: { display: true, align: 'top', offset: 10, color: '#0F172A', font: { weight: 'bold', size: 9 }, formatter: (value, ctx) => fraccionamientos[ctx.dataIndex].nombre.split(' ')[0] }
                                 },
-                                scales: {
-                                    x: { title: { display: true, text: 'Precio por m² (MXN)' }, ticks: { callback: v => '$' + v/1000 + 'k' } },
-                                    y: { title: { display: true, text: 'Puntaje Ubicación' }, min: 0, max: 100 }
-                                }
+                                scales: { x: { title: { display: true, text: 'Precio por m² (MXN)' }, ticks: { callback: v => '$' + v/1000 + 'k' } }, y: { title: { display: true, text: 'Puntaje Ubicación' }, min: 0, max: 100 } }
                             }
                         });
                     }
 
-                    // Gráfico de radar
                     const radarCtx = document.getElementById('radarChart')?.getContext('2d');
                     if (radarCtx && !chartRadar.current) {
                         chartRadar.current = new Chart(radarCtx, {
                             type: 'radar',
-                            data: {
-                                labels: factoresRadar,
-                                datasets: [
-                                    { label: 'Gran Quinta', data: datosGranQuinta, backgroundColor: 'rgba(245,158,11,0.2)', borderColor: '#F59E0B', pointBackgroundColor: '#F59E0B' },
-                                    { label: 'Promedio otros', data: datosOtros, backgroundColor: 'rgba(30,27,75,0.1)', borderColor: '#1E1B4B', pointBackgroundColor: '#1E1B4B' }
-                                ]
-                            },
+                            data: { labels: factoresRadar, datasets: [
+                                { label: 'Gran Quinta', data: datosGranQuinta, backgroundColor: 'rgba(245,158,11,0.2)', borderColor: '#F59E0B' },
+                                { label: 'Promedio otros', data: datosOtros, backgroundColor: 'rgba(30,27,75,0.1)', borderColor: '#1E1B4B' }
+                            ] },
                             options: { responsive: true, maintainAspectRatio: false, scales: { r: { min: 0, max: 10, ticks: { stepSize: 2 } } } }
                         });
                     }
 
-                    // Gráfico de tendencia (plusvalía)
                     const trendCtx = document.getElementById('priceChart')?.getContext('2d');
                     if (trendCtx && !chartTendencia.current) {
                         const gradient = trendCtx.createLinearGradient(0, 0, 0, 400);
@@ -256,17 +223,11 @@
                         gradient.addColorStop(1, 'rgba(30, 27, 75, 0.0)');
                         chartTendencia.current = new Chart(trendCtx, {
                             type: 'line',
-                            data: {
-                                labels: ['2021', '2022', '2023', '2024', '2025', '2026'],
-                                datasets: [{
-                                    label: 'Promedio zona Metepec ($/m²)',
-                                    data: [8500, 9200, 10500, 11800, 12500, 13800],
-                                    borderColor: '#1E1B4B',
-                                    backgroundColor: gradient,
-                                    fill: true,
-                                    tension: 0.4
-                                }]
-                            },
+                            data: { labels: ['2021', '2022', '2023', '2024', '2025', '2026'], datasets: [{
+                                label: 'Promedio zona Metepec ($/m²)',
+                                data: [8500, 9200, 10500, 11800, 12500, 13800],
+                                borderColor: '#1E1B4B', backgroundColor: gradient, fill: true, tension: 0.4
+                            }] },
                             options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } } }
                         });
                     }
@@ -301,7 +262,6 @@
 
             return (
                 <div style={{ maxWidth: '500px', margin: '0 auto', padding: '15px' }}>
-                    {/* Badge personal (opcional) */}
                     <div className="text-center mb-2">
                         <span className="personal-badge">✨ Oportunidad exclusiva ✨</span>
                     </div>
@@ -309,13 +269,16 @@
                     <p className="text-lg font-semibold text-amber-600 mb-1">250m² frente a Casa Club – Metepec</p>
                     <p className="text-gray-600 mb-5">Estado de México, México</p>
 
-                    {/* Video */}
+                    <!-- Video del repositorio (con botón play) -->
                     <div className="video-container">
                         <video ref={videoRef} src={`${baseUrl}video%20del%20fraccionamiento%20y%20terreno.mp4`} style={{ width: '100%', height: '100%', objectFit: 'cover' }} loop muted playsInline />
-                        {!isPlaying && <button onClick={togglePlay} style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', background: 'rgba(0,0,0,0.6)', color: 'white', border: 'none', borderRadius: '50%', width: '60px', height: '60px', fontSize: '24px', cursor: 'pointer' }}>▶</button>}
+                        {!isPlaying && (
+                            <button onClick={togglePlay} style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', background: 'rgba(0,0,0,0.6)', color: 'white', border: 'none', borderRadius: '50%', width: '60px', height: '60px', fontSize: '24px', cursor: 'pointer' }}>
+                                ▶
+                            </button>
+                        )}
                     </div>
 
-                    {/* Tarjeta de precio */}
                     <div className="bg-slate-900 text-white p-5 rounded-2xl mb-5">
                         <p className="text-sm opacity-70">PRECIO TOTAL</p>
                         <p className="text-5xl font-bold text-amber-400 my-1">$2,875,000</p>
@@ -326,13 +289,11 @@
                         </div>
                     </div>
 
-                    {/* Sustitución de deudor */}
                     <div className="bg-gradient-to-br from-indigo-600 to-purple-800 p-5 rounded-2xl text-white mb-5">
                         <div className="badge mb-2">🔒 SUSTITUCIÓN DE DEUDOR</div>
                         <p className="text-sm">Adquiere el inmueble asumiendo el crédito hipotecario existente ante Notario, sin contratar nuevo financiamiento. Mensualidad fija de $25,000 MXN.</p>
                     </div>
 
-                    {/* Ubicación y distancias */}
                     <div className="bg-white p-5 rounded-2xl shadow mb-5">
                         <h2 className="text-xl font-bold mb-3">📍 Ubicación Exacta</h2>
                         <p className="mb-3">Camino Real a Ocotitlán 601, Metepec</p>
@@ -345,14 +306,12 @@
                         <a href="https://maps.google.com/?q=Camino+Real+a+Ocotitlán+601+Metepec" target="_blank" className="block bg-gray-100 text-center py-2 rounded-xl mt-4 text-gray-700">Ver en Google Maps →</a>
                     </div>
 
-                    {/* Galería de imágenes */}
                     <div className="grid grid-cols-2 gap-2.5 mb-5">
                         {images.map((img, idx) => (
                             <img key={idx} src={`${baseUrl}${img}`} className="aspect-square object-cover rounded-xl" alt="Vista de la propiedad" onError={(e) => e.target.style.display='none'} />
                         ))}
                     </div>
 
-                    {/* ICI y escenarios combinados */}
                     <div className="ici-card mb-5">
                         <h3 className="text-xl font-bold mb-2">Índice de Certeza de Inversión</h3>
                         <div className="ici-number">8.9<span className="text-xl text-white">/10</span></div>
@@ -364,14 +323,11 @@
                         </div>
                     </div>
 
-                    {/* Tabla comparativa de escenarios */}
                     <div className="bg-white p-5 rounded-2xl shadow mb-5">
                         <h3 className="text-lg font-bold mb-3 text-center">Comparativa de Estrategias de Inversión</h3>
                         <div className="overflow-x-auto">
                             <table className="min-w-full text-sm">
-                                <thead className="bg-slate-100">
-                                    <tr><th className="p-2 text-left">Escenario</th><th className="p-2 text-right">Utilidad neta</th><th className="p-2 text-right">ROI anual</th></tr>
-                                </thead>
+                                <thead className="bg-slate-100"><tr><th className="p-2 text-left">Escenario</th><th className="p-2 text-right">Utilidad neta</th><th className="p-2 text-right">ROI anual</th></tr></thead>
                                 <tbody>
                                     <tr className="border-b"><td className="p-2">Vender hoy</td><td className="p-2 text-right text-red-600">-$431K</td><td className="p-2 text-right">N/A</td></tr>
                                     <tr className="border-b"><td className="p-2">Esperar 3 años y vender</td><td className="p-2 text-right text-green-600">+$162,989</td><td className="p-2 text-right">~5%</td></tr>
@@ -383,16 +339,13 @@
                         <p className="text-[10px] text-slate-400 mt-3">*Utilidades después de impuestos (ISR e ISAI).</p>
                     </div>
 
-                    {/* Gráficos de comparación */}
                     <div className="bg-white p-5 rounded-2xl mb-5">
                         <h3 className="text-lg font-bold mb-2">📊 Comparativa de Fraccionamientos</h3>
                         <div className="chart-container"><canvas id="bubbleChart"></canvas></div>
-                        <p className="text-xs text-gray-500 mt-2">Tamaño de burbuja = plusvalía proyectada. Gran Quinta (naranja) ofrece el mejor equilibrio precio/calidad.</p>
                     </div>
                     <div className="bg-white p-5 rounded-2xl mb-5">
                         <h3 className="text-lg font-bold mb-2">🕸️ Ventaja por Ubicación</h3>
                         <div className="chart-container"><canvas id="radarChart"></canvas></div>
-                        <p className="text-xs text-gray-500 mt-2">Gran Quinta supera al promedio de otros fraccionamientos en todos los factores clave.</p>
                     </div>
                     <div className="bg-white p-5 rounded-2xl mb-5">
                         <h3 className="text-lg font-bold mb-2">📈 Tendencia de Precios en Metepec</h3>
@@ -400,19 +353,17 @@
                         <p className="text-xs text-gray-500 mt-2">Fuente: Índice SHF de Precios de la Vivienda.</p>
                     </div>
 
-                    {/* Documentos de respaldo */}
                     <div className="bg-gray-50 p-5 rounded-2xl mb-5 border border-gray-200">
                         <h3 className="text-lg font-bold mb-3 text-center">📚 Documentos de Respaldo</h3>
-                        <div className="grid grid-cols-1 gap-3">
-                            <a href="./An%C3%A1lisis_Financiero_detallado_Gran_Quinta_Metepec__Estado_de_Mexico%20(2).pdf" download className="btn-pdf justify-center">📄 Proyección 2A – Venta del Terreno</a>
-                            <a href="./An%C3%A1lisis_Financiero_detallado_Construyendo_y_Vendiendo%20(1).pdf" download className="btn-pdf justify-center">📄 Proyección 2B – Construcción y Venta</a>
-                            <a href="./An%C3%A1lisis_Financiero_detallado_Construyendo_y_Rentando%20(1).pdf" download className="btn-pdf justify-center">📄 Proyección 2C – Construcción y Renta</a>
-                            <a href="./Anexo_T%C3%A9cnico_Gran_Quinta_Metepec_Estado_de_MExico.pdf" download className="btn-pdf justify-center">📄 Anexo Técnico de Construcción</a>
-                            <a href="./Indice_de_Certeza_de_Invercion_ICI%20(1).pdf" download className="btn-pdf justify-center">📄 Metodología del ICI</a>
+                        <div className="pdf-grid">
+                            <a href="./An%C3%A1lisis_Financiero_detallado_Gran_Quinta_Metepec__Estado_de_Mexico%20(2).pdf" download className="btn-pdf">📄 Proyección 2A</a>
+                            <a href="./An%C3%A1lisis_Financiero_detallado_Construyendo_y_Vendiendo%20(1).pdf" download className="btn-pdf">📄 Proyección 2B</a>
+                            <a href="./An%C3%A1lisis_Financiero_detallado_Construyendo_y_Rentando%20(1).pdf" download className="btn-pdf">📄 Proyección 2C</a>
+                            <a href="./Anexo_T%C3%A9cnico_Gran_Quinta_Metepec_Estado_de_MExico.pdf" download className="btn-pdf">📄 Anexo Técnico</a>
+                            <a href="./Indice_de_Certeza_de_Invercion_ICI%20(1).pdf" download className="btn-pdf">📄 Metodología ICI</a>
                         </div>
                     </div>
 
-                    {/* Contactos */}
                     <div className="bg-teal-900 p-6 rounded-3xl text-white text-center mb-5">
                         <h3 className="text-2xl font-bold mb-2">📞 ¿Listo para invertir?</h3>
                         <p className="text-sm mb-4 opacity-90">Asesoría personalizada sin costo</p>
@@ -428,7 +379,6 @@
                         <p className="text-xs mt-4 border-t border-white/20 pt-4">⚡ Respuesta rápida • Atención personalizada</p>
                     </div>
 
-                    {/* Personaje Inver-tito */}
                     {mostrarPersonaje && (
                         <div className="inver-tito">
                             <div className="burbuja">{mensaje}</div>
@@ -441,12 +391,6 @@
                             </svg>
                         </div>
                     )}
-
-                    {/* Footer */}
-                    <div className="text-center text-gray-400 text-[10px] py-2">
-                        <p>Fuentes: SHF, AMPI, Inmuebles24, Vivanuncios. Proyecciones basadas en datos de mercado 2026.</p>
-                        <p>© 2026 Robles Ecosystem – Premium real estate intelligence</p>
-                    </div>
                 </div>
             );
         };
