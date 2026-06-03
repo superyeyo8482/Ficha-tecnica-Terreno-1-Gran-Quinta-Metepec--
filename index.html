@@ -41,7 +41,6 @@
         .chart-container { position: relative; width: 100%; height: 280px; margin: 20px 0; }
         @media (min-width: 768px) { .chart-container { height: 320px; } }
         .video-container { position: relative; width: 100%; aspect-ratio: 16/9; background: #000; border-radius: 20px; overflow: hidden; margin-bottom: 20px; }
-        .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
         .badge { background: #F59E0B; color: white; padding: 5px 15px; border-radius: 50px; font-size: 12px; font-weight: bold; display: inline-block; margin-bottom: 10px; }
         
         /* Botones de WhatsApp - dos contactos */
@@ -252,7 +251,6 @@
             const ocultarPersonaje = () => setMostrarPersonaje(false);
             if (!cargado) return <div className="cargando">Preparando experiencia inmersiva...</div>;
 
-            // Contactos: Aurelio y Alejandro Lyman
             const contactos = {
                 aurelio: {
                     name: "Aurelio Robles Pichardo",
@@ -281,6 +279,7 @@
                     <p className="text-lg font-semibold text-amber-600 mb-1">250m² frente a Casa Club – Metepec</p>
                     <p className="text-gray-600 mb-5">Estado de México, México</p>
 
+                    {/* Video del repositorio con botón de play */}
                     <div className="video-container">
                         <video ref={videoRef} src={`${baseUrl}video%20del%20fraccionamiento%20y%20terreno.mp4`} style={{ width: '100%', height: '100%', objectFit: 'cover' }} loop muted playsInline />
                         {!isPlaying && (
@@ -338,7 +337,9 @@
                         <h3 className="text-lg font-bold mb-3 text-center">Comparativa de Estrategias de Inversión</h3>
                         <div className="overflow-x-auto">
                             <table className="min-w-full text-sm">
-                                <thead className="bg-slate-100"><tr><th className="p-2 text-left">Escenario</th><th className="p-2 text-right">Utilidad neta</th><th className="p-2 text-right">ROI anual</th></tr></thead>
+                                <thead className="bg-slate-100">
+                                    <tr><th className="p-2 text-left">Escenario</th><th className="p-2 text-right">Utilidad neta</th><th className="p-2 text-right">ROI anual</th></tr>
+                                </thead>
                                 <tbody>
                                     <tr className="border-b"><td className="p-2">Vender hoy</td><td className="p-2 text-right text-red-600">-$431K</td><td className="p-2 text-right">N/A</td></tr>
                                     <tr className="border-b"><td className="p-2">Esperar 3 años y vender</td><td className="p-2 text-right text-green-600">+$162,989</td><td className="p-2 text-right">~5%</td></tr>
@@ -375,7 +376,7 @@
                         </div>
                     </div>
 
-                    <!-- Contactos: Aurelio y Alejandro Lyman -->
+                    {/* Contactos: Aurelio y Alejandro Lyman */}
                     <div className="bg-teal-900 p-6 rounded-3xl text-white text-center mb-5">
                         <h3 className="text-2xl font-bold mb-2">📞 ¿Listo para invertir?</h3>
                         <p className="text-sm mb-4 opacity-90">Asesoría personalizada sin costo</p>
