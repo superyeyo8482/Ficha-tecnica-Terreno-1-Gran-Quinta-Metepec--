@@ -43,7 +43,6 @@
         .video-container { position: relative; width: 100%; aspect-ratio: 16/9; background: #000; border-radius: 20px; overflow: hidden; margin-bottom: 20px; }
         .badge { background: #F59E0B; color: white; padding: 5px 15px; border-radius: 50px; font-size: 12px; font-weight: bold; display: inline-block; margin-bottom: 10px; }
         
-        /* Botones de WhatsApp - dos contactos */
         .btn-whatsapp {
             display: flex;
             align-items: center;
@@ -71,7 +70,6 @@
         .image-gallery { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-bottom: 20px; }
         .image-gallery img { width: 100%; aspect-ratio: 1/1; object-fit: cover; border-radius: 16px; background: #f0f0f0; }
         
-        /* Personaje Inver-tito */
         .inver-tito {
             position: fixed;
             bottom: 20px;
@@ -113,7 +111,6 @@
             .burbuja { font-size: 10px; white-space: normal; width: 110px; text-align: center; top: -70px; left: 15px; }
         }
         
-        /* Botones de descarga PDF */
         .btn-pdf { background-color: #F59E0B; color: #0F172A; border: none; border-radius: 60px; padding: 10px 20px; font-weight: bold; font-size: 13px; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; transition: all 0.2s; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
         .btn-pdf:hover { transform: scale(1.02); background-color: #d97706; }
         .pdf-grid { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin: 20px 0; }
@@ -196,7 +193,7 @@
                                 responsive: true, maintainAspectRatio: false,
                                 plugins: {
                                     legend: { display: false },
-                                    tooltip: { callbacks: { label: (ctx) => { const f = fraccionamientos[ctx.dataIndex]; return [`${f.nombre}`, `Precio: $${f.precio}/m²`, `Puntaje: ${f.puntaje}/100`, `Plusvalía: +${f.plusvalia}%`]; } } },
+                                    tooltip: { callbacks: { label: (ctx) => { const f = fraccionamientos[ctx.dataIndex]; return [f.nombre, `Precio: $${f.precio}/m²`, `Puntaje: ${f.puntaje}/100`, `Plusvalía: +${f.plusvalia}%`]; } } },
                                     datalabels: { display: true, align: 'top', offset: 10, color: '#0F172A', font: { weight: 'bold', size: 9 }, formatter: (value, ctx) => fraccionamientos[ctx.dataIndex].nombre.split(' ')[0] }
                                 },
                                 scales: { x: { title: { display: true, text: 'Precio por m² (MXN)' }, ticks: { callback: v => '$' + v/1000 + 'k' } }, y: { title: { display: true, text: 'Puntaje Ubicación' }, min: 0, max: 100 } }
@@ -337,18 +334,22 @@
                         <div className="overflow-x-auto">
                             <table className="min-w-full text-sm">
                                 <thead className="bg-slate-100">
-                                    <tr><th className="p-2 text-left">Escenario</th><th className="p-2 text-right">Utilidad neta</th><th className="p-2 text-right">ROI anual</th></tr>
+                                    <tr>
+                                        <th className="p-2 text-left">Escenario</th>
+                                        <th className="p-2 text-right">Utilidad neta</th>
+                                        <th className="p-2 text-right">ROI anual</th>
+                                    </tr>
                                 </thead>
                                 <tbody>
-                                    <tr className="border-b"><td className="p-2">Vender hoy<\/td><td className="p-2 text-right text-red-600">-$431K<\/td><td className="p-2 text-right">N/A<\/td><\/tr>
-                                    <tr className="border-b"><td className="p-2">Esperar 3 años y vender<\/td><td className="p-2 text-right text-green-600">+$162,989<\/td><td className="p-2 text-right">~5%<\/td><\/tr>
-                                    <tr className="border-b"><td className="p-2">Construir y vender<\/td><td className="p-2 text-right text-green-600">+$199,200<\/td><td className="p-2 text-right">~6%<\/td><\/tr>
-                                    <tr className="bg-amber-50"><td className="p-2 font-bold">Construir y rentar<\/td><td className="p-2 text-right font-bold text-green-600">+$3.16M<\/td><td className="p-2 text-right font-bold">14.6%<\/td><\/tr>
-                                <\/tbody>
-                            <\/table>
-                        <\/div>
+                                    <tr className="border-b"><td className="p-2">Vender hoy</td><td className="p-2 text-right text-red-600">-$431K</td><td className="p-2 text-right">N/A</td></tr>
+                                    <tr className="border-b"><td className="p-2">Esperar 3 años y vender</td><td className="p-2 text-right text-green-600">+$162,989</td><td className="p-2 text-right">~5%</td></tr>
+                                    <tr className="border-b"><td className="p-2">Construir y vender</td><td className="p-2 text-right text-green-600">+$199,200</td><td className="p-2 text-right">~6%</td></tr>
+                                    <tr className="bg-amber-50"><td className="p-2 font-bold">Construir y rentar</td><td className="p-2 text-right font-bold text-green-600">+$3.16M</td><td className="p-2 text-right font-bold">14.6%</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
                         <p className="text-[10px] text-slate-400 mt-3">*Utilidades después de impuestos (ISR e ISAI).</p>
-                    <\/div>
+                    </div>
 
                     <div className="bg-white p-5 rounded-2xl mb-5">
                         <h3 className="text-lg font-bold mb-2">📊 Comparativa de Fraccionamientos</h3>
