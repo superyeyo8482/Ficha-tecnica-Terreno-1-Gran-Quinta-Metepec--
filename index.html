@@ -4,17 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
     
-    <!-- Open Graph para WhatsApp (Optimizado) -->
-    <meta property="og:title" content="Gran Quinta Lote 1 – Inversión en Metepec" />
-    <meta property="og:description" content="Inversión en terreno de 250m² en fraccionamiento cerrado. Precio: $2,875,000 MXN ($11,500/m²). Esquema de Sustitución de Deudor. Análisis financiero descargable." />
-    <meta property="og:image" content="https://raw.githubusercontent.com/superyeyo8482/Ficha-tecnica-Terreno-1-Gran-Quinta-Metepec--/main/imagen%206%20(entrada%20principal).jpg" />
-    <meta property="og:image:type" content="image/jpeg" />
+    <!-- Open Graph para WhatsApp - PRUEBA DEFINITIVA -->
+    <meta property="og:title" content="PRUEBA - Gran Quinta Lote 1" />
+    <meta property="og:description" content="Esta es una prueba técnica para verificar el funcionamiento de Open Graph." />
+    <meta property="og:image" content="https://github.githubassets.com/assets/GitHub-Mark-ea2971cee799.png" />
+    <meta property="og:image:type" content="image/png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:url" content="https://ficha-tecnica-terreno-1-gran-quinta.vercel.app" />
     <meta property="og:type" content="website" />
     
-    <!-- LIBRERÍAS -->
     <title>Gran Quinta Lote 1 – Inversión en Metepec</title>
     <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
     <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
@@ -178,58 +177,79 @@
                 setCargado(true);
                 if (window.Chart) window.Chart.register(ChartDataLabels);
 
-                setTimeout(() => {
-                    const bubbleCtx = document.getElementById('bubbleChart')?.getContext('2d');
-                    if (bubbleCtx && !chartBurbujas.current) {
-                        chartBurbujas.current = new Chart(bubbleCtx, {
-                            type: 'bubble',
-                            data: {
-                                datasets: [{
-                                    data: fraccionamientos.map(f => ({ x: f.precio, y: f.puntaje, r: f.tamaño })),
-                                    backgroundColor: fraccionamientos.map(f => f.color),
-                                    borderColor: 'white', borderWidth: 2
-                                }]
-                            },
-                            options: {
-                                responsive: true, maintainAspectRatio: false,
-                                plugins: {
-                                    legend: { display: false },
-                                    tooltip: { callbacks: { label: (ctx) => { const f = fraccionamientos[ctx.dataIndex]; return [f.nombre, `Precio: $${f.precio}/m²`, `Puntaje: ${f.puntaje}/100`, `Plusvalía: +${f.plusvalia}%`]; } } },
-                                    datalabels: { display: true, align: 'top', offset: 10, color: '#0F172A', font: { weight: 'bold', size: 9 }, formatter: (value, ctx) => fraccionamientos[ctx.dataIndex].nombre.split(' ')[0] }
+                // Función segura para inicializar gráficos
+                const initCharts = () => {
+                    // Gráfico de burbujas
+                    const bubbleCanvas = document.getElementById('bubbleChart');
+                    if (bubbleCanvas && !chartBurbujas.current) {
+                        const ctx = bubbleCanvas.getContext('2d');
+                        if (ctx) {
+                            chartBurbujas.current = new Chart(ctx, {
+                                type: 'bubble',
+                                data: {
+                                    datasets: [{
+                                        data: fraccionamientos.map(f => ({ x: f.precio, y: f.puntaje, r: f.tamaño })),
+                                        backgroundColor: fraccionamientos.map(f => f.color),
+                                        borderColor: 'white', borderWidth: 2
+                                    }]
                                 },
-                                scales: { x: { title: { display: true, text: 'Precio por m² (MXN)' }, ticks: { callback: v => '$' + v/1000 + 'k' } }, y: { title: { display: true, text: 'Puntaje Ubicación' }, min: 0, max: 100 } }
-                            }
-                        });
+                                options: {
+                                    responsive: true, maintainAspectRatio: false,
+                                    plugins: {
+                                        legend: { display: false },
+                                        tooltip: { callbacks: { label: (ctx) => { const f = fraccionamientos[ctx.dataIndex]; return [f.nombre, `Precio: $${f.precio}/m²`, `Puntaje: ${f.puntaje}/100`, `Plusvalía: +${f.plusvalia}%`]; } } },
+                                        datalabels: { display: true, align: 'top', offset: 10, color: '#0F172A', font: { weight: 'bold', size: 9 }, formatter: (value, ctx) => fraccionamientos[ctx.dataIndex].nombre.split(' ')[0] }
+                                    },
+                                    scales: { x: { title: { display: true, text: 'Precio por m² (MXN)' }, ticks: { callback: v => '$' + v/1000 + 'k' } }, y: { title: { display: true, text: 'Puntaje Ubicación' }, min: 0, max: 100 } }
+                                }
+                            });
+                        }
                     }
 
-                    const radarCtx = document.getElementById('radarChart')?.getContext('2d');
-                    if (radarCtx && !chartRadar.current) {
-                        chartRadar.current = new Chart(radarCtx, {
-                            type: 'radar',
-                            data: { labels: factoresRadar, datasets: [
-                                { label: 'Gran Quinta', data: datosGranQuinta, backgroundColor: 'rgba(245,158,11,0.2)', borderColor: '#F59E0B' },
-                                { label: 'Promedio otros', data: datosOtros, backgroundColor: 'rgba(30,27,75,0.1)', borderColor: '#1E1B4B' }
-                            ] },
-                            options: { responsive: true, maintainAspectRatio: false, scales: { r: { min: 0, max: 10, ticks: { stepSize: 2 } } } }
-                        });
+                    // Gráfico de radar
+                    const radarCanvas = document.getElementById('radarChart');
+                    if (radarCanvas && !chartRadar.current) {
+                        const ctx = radarCanvas.getContext('2d');
+                        if (ctx) {
+                            chartRadar.current = new Chart(ctx, {
+                                type: 'radar',
+                                data: { labels: factoresRadar, datasets: [
+                                    { label: 'Gran Quinta', data: datosGranQuinta, backgroundColor: 'rgba(245,158,11,0.2)', borderColor: '#F59E0B' },
+                                    { label: 'Promedio otros', data: datosOtros, backgroundColor: 'rgba(30,27,75,0.1)', borderColor: '#1E1B4B' }
+                                ] },
+                                options: { responsive: true, maintainAspectRatio: false, scales: { r: { min: 0, max: 10, ticks: { stepSize: 2 } } } }
+                            });
+                        }
                     }
 
-                    const trendCtx = document.getElementById('priceChart')?.getContext('2d');
-                    if (trendCtx && !chartTendencia.current) {
-                        const gradient = trendCtx.createLinearGradient(0, 0, 0, 400);
-                        gradient.addColorStop(0, 'rgba(30, 27, 75, 0.5)');
-                        gradient.addColorStop(1, 'rgba(30, 27, 75, 0.0)');
-                        chartTendencia.current = new Chart(trendCtx, {
-                            type: 'line',
-                            data: { labels: ['2021', '2022', '2023', '2024', '2025', '2026'], datasets: [{
-                                label: 'Promedio zona Metepec ($/m²)',
-                                data: [8500, 9200, 10500, 11800, 12500, 13800],
-                                borderColor: '#1E1B4B', backgroundColor: gradient, fill: true, tension: 0.4
-                            }] },
-                            options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } } }
-                        });
+                    // Gráfico de tendencia
+                    const trendCanvas = document.getElementById('priceChart');
+                    if (trendCanvas && !chartTendencia.current) {
+                        const ctx = trendCanvas.getContext('2d');
+                        if (ctx) {
+                            const gradient = ctx.createLinearGradient(0, 0, 0, 400);
+                            gradient.addColorStop(0, 'rgba(30, 27, 75, 0.5)');
+                            gradient.addColorStop(1, 'rgba(30, 27, 75, 0.0)');
+                            chartTendencia.current = new Chart(ctx, {
+                                type: 'line',
+                                data: { labels: ['2021', '2022', '2023', '2024', '2025', '2026'], datasets: [{
+                                    label: 'Promedio zona Metepec ($/m²)',
+                                    data: [8500, 9200, 10500, 11800, 12500, 13800],
+                                    borderColor: '#1E1B4B', backgroundColor: gradient, fill: true, tension: 0.4
+                                }] },
+                                options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } } }
+                            });
+                        }
                     }
-                }, 500);
+                };
+
+                // Esperar a que el DOM esté listo
+                if (document.readyState === 'loading') {
+                    document.addEventListener('DOMContentLoaded', initCharts);
+                } else {
+                    // Si el DOM ya está cargado, ejecutar después de un pequeño retraso
+                    setTimeout(initCharts, 500);
+                }
 
                 const interval = setInterval(() => {
                     const msgs = ["Inversión inteligente 📈", "¡Este terreno es único! 🌟", "Consulta sin compromiso 💬", "Plusvalía garantizada 🏆"];
