@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    
+    <!-- Open Graph para WhatsApp (CORRECTO Y FUNCIONAL) -->
+    <meta property="og:title" content="🏠 Gran Quinta Lote 1 – Inversión en Terreno frente a Casa Club" />
+    <meta property="og:description" content="250m² en fraccionamiento cerrado de lujo en Metepec. Precio: $2,875,000 MXN ($11,500/m²). Sustitución de Deudor. Plusvalía anual del 8%. Incluye análisis financiero completo, gráficos y documentos descargables." />
+    <meta property="og:image" content="https://raw.githubusercontent.com/superyeyo8482/Ficha-tecnica-Terreno-1-Gran-Quinta-Metepec--/main/imagen%206%20(entrada%20principal).jpg" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:url" content="https://ficha-tecnica-terreno-1-gran-quinta.vercel.app" />
+    <meta property="og:type" content="website" />
+    
+    <title>Gran Quinta Lote 1 – Inversión Inmobiliaria en Metepec</title>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .card {
+            max-width: 500px;
+            width: 100%;
+            background: white;
+            border-radius: 40px;
+            overflow: hidden;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            animation: fadeIn 0.5s ease-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .hero-img {
+            width: 100%;
+            height: 220px;
+            background-image: url('https://raw.githubusercontent.com/superyeyo8482/Ficha-tecnica-Terreno-1-Gran-Quinta-Metepec--/main/imagen%206%20(entrada%20principal).jpg');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        
+        .hero-img::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.6));
+        }
+        
+        .badge {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background: #F59E0B;
+            color: #0F172A;
+            padding: 6px 14px;
+            border-radius: 30px;
+            font-size: 12px;
+            font-weight: bold;
+            z-index: 2;
+        }
+        
+        .content {
+            padding: 28px 24px 32px;
+        }
+        
+        h1 {
+            font-size: 28px;
+            font-weight: 800;
+            color: #0F172A;
+            margin-bottom: 8px;
+        }
+        
+        .location {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            color: #6B7280;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+        
+        .price {
+            background: #FEF3C7;
+            padding: 16px 20px;
+            border-radius: 24px;
+            margin-bottom: 24px;
+            text-align: center;
+        }
+        
+        .price .total {
+            font-size: 32px;
+            font-weight: 900;
+            color: #F59E0B;
+        }
+        
+        .price .per-m2 {
+            font-size: 14px;
+            color: #6B7280;
+            margin-top: 6px;
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin-bottom: 24px;
+            text-align: center;
+        }
+        
+        .feature {
+            background: #F3F4F6;
+            padding: 12px 8px;
+            border-radius: 20px;
+        }
+        
+        .feature-value {
+            font-size: 20px;
+            font-weight: 800;
+            color: #0F172A;
+        }
+        
+        .feature-label {
+            font-size: 11px;
+            color: #6B7280;
+            margin-top: 4px;
+        }
+        
+        .btn {
+            display: block;
+            background: #F59E0B;
+            color: #0F172A;
+            text-align: center;
+            padding: 16px 24px;
+            border-radius: 60px;
+            text-decoration: none;
+            font-weight: 800;
+            font-size: 16px;
+            transition: all 0.2s;
+            margin-bottom: 20px;
+        }
+        
+        .btn:hover {
+            background: #D97706;
+            transform: scale(1.02);
+        }
+        
+        .documents {
+            background: #F9FAFB;
+            border-radius: 20px;
+            padding: 16px;
+            margin-bottom: 20px;
+        }
+        
+        .documents h3 {
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .doc-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        
+        .doc-badge {
+            background: #E5E7EB;
+            padding: 4px 12px;
+            border-radius: 30px;
+            font-size: 10px;
+            font-weight: 600;
+            color: #374151;
+        }
+        
+        .footer {
+            text-align: center;
+            font-size: 11px;
+            color: #9CA3AF;
+            padding-top: 16px;
+            border-top: 1px solid #F3F4F6;
+        }
+        
+        .contact {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin: 16px 0;
+        }
+        
+        .contact span {
+            font-size: 12px;
+            background: #F3F4F6;
+            padding: 6px 14px;
+            border-radius: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="hero-img">
+            <div class="badge">✨ Oportunidad exclusiva</div>
+        </div>
+        
+        <div class="content">
+            <h1>Lote 1 Gran Quinta</h1>
+            <div class="location">
+                📍 Camino Real a Ocotitlán 601, Metepec
+            </div>
+            
+            <div class="price">
+                <div class="total">$2,875,000 MXN</div>
+                <div class="per-m2">$11,500 / m²</div>
+            </div>
+            
+            <div class="features">
+                <div class="feature">
+                    <div class="feature-value">250 m²</div>
+                    <div class="feature-label">Superficie</div>
+                </div>
+                <div class="feature">
+                    <div class="feature-value">+$350k</div>
+                    <div class="feature-label">Ahorro vs mercado</div>
+                </div>
+                <div class="feature">
+                    <div class="feature-value">14.6%</div>
+                    <div class="feature-label">ROI anual (renta)</div>
+                </div>
+            </div>
+            
+            <a href="https://ficha-tecnica-terreno-1-gran-quinta.vercel.app/" class="btn">
+                🔍 Ver ficha técnica completa
+            </a>
+            
+            <div class="documents">
+                <h3>📚 Documentos incluidos</h3>
+                <div class="doc-list">
+                    <span class="doc-badge">Proyección 2A</span>
+                    <span class="doc-badge">Proyección 2B</span>
+                    <span class="doc-badge">Proyección 2C</span>
+                    <span class="doc-badge">Anexo Técnico</span>
+                    <span class="doc-badge">Metodología ICI</span>
+                </div>
+            </div>
+            
+            <div class="contact">
+                <span>📞 Aurelio Robles</span>
+                <span>📞 Alejandro Lyman</span>
+            </div>
+            
+            <div class="footer">
+                ICI 8.9/10 · Plusvalía 8% anual · Sustitución de Deudor
+            </div>
+        </div>
+    </div>
+</body>
+</html>
